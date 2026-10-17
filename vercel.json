@@ -1,0 +1,14 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "linelem.com" }], "destination": "/en" },
+    { "source": "/", "destination": "/ru" }
+  ],
+  "redirects": [
+    { "source": "/en/:path*", "has": [{ "type": "host", "value": "linelem.art" }], "destination": "https://linelem.com/", "permanent": true },
+    { "source": "/ru/:path*", "has": [{ "type": "host", "value": "linelem.com" }], "destination": "https://linelem.art/", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] }
+  ]
+}

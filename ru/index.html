@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linel Em — иллюстрации для книг</title>
+<meta name="description" content="Обложки, книжные иллюстрации, игральные карты и мерч для особых изданий. Работаю с издательствами и авторами.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="linelem.art">
+<meta property="og:title" content="Linel Em — иллюстрации для книг">
+<meta property="og:description" content="Обложки, книжные иллюстрации, игральные карты и мерч для особых изданий. Работаю с издательствами и авторами.">
+<meta property="og:image" content="https://linelem.art/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Linel Em — иллюстрации для книг">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://linelem.art/">
+<link rel="alternate" hreflang="ru" href="https://linelem.art/">
+<link rel="alternate" hreflang="en" href="https://linelem.com/">
+<link rel="alternate" hreflang="x-default" href="https://linelem.com/">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#110a0c">
+<meta property="og:url" content="https://linelem.art/">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+  :root {
+    --bg: #110a0c;
+    --bg-2: #1c1013;
+    --wine: #8e1b2a;
+    --red: #d42c40;
+    --cyan: #6fb6c6;
+    --paper: #efe6dc;
+    --paper-2: #e4d6c6;
+    --ink: #2a1a1c;
+    --muted: #a8988f;
+    --line: rgba(239, 230, 220, .14);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+    --script: "Great Vibes", cursive;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); }
+  body {
+    background: transparent; color: var(--paper);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  body.loading { overflow: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--red); color: var(--paper); }
+
+  /* paper: fibres + soft mottling, static, under the film grain */
+  .paper {
+    position: fixed; inset: 0; z-index: 89; pointer-events: none; opacity: .28; mix-blend-mode: soft-light;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .9 0 0 0 0 .85 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .8 0 0 0 0 .75 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  }
+
+  /* film grain, animated */
+  .grain {
+    position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .11;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1s steps(6) infinite;
+  }
+  /* on phones the jittering grain reads as fast-moving noise over the wine light: keep it still and quieter */
+  @media (max-width: 900px), (hover: none) { .grain { animation: none; opacity: .05; inset: 0; } }
+  @keyframes grain {
+    0%,100% { transform: translate(0,0) } 20% { transform: translate(-3%,2%) }
+    40% { transform: translate(2%,-3%) } 60% { transform: translate(-2%,-1%) } 80% { transform: translate(3%,3%) }
+  }
+
+  /* cursor */
+  .cursor, .cursor-ring { position: fixed; top: 0; left: 0; z-index: 100; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); }
+  .cursor { width: 6px; height: 6px; background: var(--red); }
+  .cursor-ring {
+    width: 38px; height: 38px; border: 1px solid rgba(239,230,220,.5);
+    display: grid; place-items: center;
+    font: 600 10px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--bg);
+    transition: width .4s var(--ease), height .4s var(--ease), background .4s, border-color .4s;
+  }
+  .cursor-ring span { opacity: 0; transition: opacity .3s; }
+  .cursor-ring.big { width: 96px; height: 96px; background: var(--paper); border-color: var(--paper); }
+  .cursor-ring.big span { opacity: 1; }
+  @media (hover: none) { .cursor, .cursor-ring { display: none; } }
+
+  /* preloader */
+  .loader {
+    position: fixed; inset: 0; z-index: 95; background: var(--wine);
+    display: grid; place-items: center;
+  }
+  .loader svg { width: min(420px, 70vw); overflow: visible; }
+  .loader text { font: 400 120px var(--script); fill: transparent; stroke: var(--paper); stroke-width: 1.2; stroke-dasharray: 900; stroke-dashoffset: 900; }
+
+  /* nav */
+  nav {
+    position: fixed; top: 0; inset-inline: 0; z-index: 60;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px clamp(16px, 4vw, 48px); mix-blend-mode: difference;
+  }
+  .sound { all: unset; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 4px; color: var(--paper); opacity: .75; transition: opacity .3s, color .3s; }
+  .sound:hover { opacity: 1; }
+  .sound .note { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .sound .note circle { fill: currentColor; }
+  .sound .bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; width: 0; overflow: hidden; transition: width .4s var(--ease); }
+  .sound .bars i { width: 2px; height: 3px; background: currentColor; border-radius: 1px; animation: eq 1.2s ease-in-out infinite; }
+  .sound .bars i:nth-child(2) { animation-delay: -.4s; } .sound .bars i:nth-child(3) { animation-delay: -.8s; }
+  .sound.on { opacity: 1; color: var(--red); }
+  .sound.on .bars { width: 10px; }
+  .sound:focus-visible { outline: 1px solid var(--red); outline-offset: 3px; }
+  @keyframes eq { 0%,100% { height: 3px } 50% { height: 12px } }
+  .nav-right { display: flex; align-items: center; gap: 22px; }
+  .lang { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; display: flex; gap: 8px; }
+  .lang span { opacity: 1; } .lang a { opacity: .5; transition: opacity .3s; } .lang a:hover { opacity: 1; }
+  .logo { font: 400 34px/1 var(--script); }
+  .status { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: #7dffb0; box-shadow: 0 0 12px #7dffb0; animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: .3 } }
+
+  /* chapter labels */
+  .chapter {
+    font: italic 400 18px/1 var(--serif); color: var(--red); letter-spacing: .04em;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+  }
+  .chapter::after { content: ""; width: 60px; height: 1px; background: currentColor; }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; height: 100svh; min-height: 640px; overflow: hidden; }
+  .hero-art { position: absolute; inset: 0; }
+  .hero-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 25%; }
+  .hero-art .dim { filter: grayscale(1) brightness(.22) contrast(1.2); }
+  .hero-art .lit {
+    --x: 70%; --y: 40%; --r: 0px;
+    -webkit-mask: radial-gradient(circle var(--r) at var(--x) var(--y), #000 0%, #000 45%, transparent 100%);
+            mask: radial-gradient(circle var(--r) at var(--x) var(--y), #000 0%, #000 45%, transparent 100%);
+  }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,10,12,.92) 0%, rgba(17,10,12,.35) 55%, transparent 80%), linear-gradient(transparent 60%, rgba(17,10,12,.85) 92%, rgba(17,10,12,0)); pointer-events: none; }
+  .hero-art { -webkit-mask: linear-gradient(#000 72%, transparent); mask: linear-gradient(#000 72%, transparent); }
+  .hero-content { position: absolute; z-index: 2; left: clamp(16px, 5vw, 80px); bottom: clamp(60px, 12vh, 130px); max-width: 760px; }
+  .hero h1 { font: 500 clamp(52px, 8.5vw, 140px)/.88 var(--serif); letter-spacing: -.01em; }
+  .hero h1 .line { display: block; overflow: hidden; padding-bottom: .06em; }
+  .hero h1 .ch { display: inline-block; will-change: transform; }
+  .hero h1 em { color: var(--red); font-style: italic; }
+  .hero p { margin: 26px 0 0; max-width: 30em; color: var(--muted); font-size: 18px; }
+  .hint { position: absolute; z-index: 2; right: clamp(16px, 4vw, 48px); bottom: 40px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; display: flex; align-items: center; gap: 14px; }
+  .hint::after { content: ""; width: 1px; height: 70px; background: linear-gradient(var(--red), transparent); animation: drip 2s var(--ease) infinite; }
+  @keyframes drip { 0% { transform: scaleY(0); transform-origin: top } 50% { transform: scaleY(1); transform-origin: top } 51% { transform-origin: bottom } 100% { transform: scaleY(0); transform-origin: bottom } }
+
+  /* ===== RED THREAD ===== */
+  .thread { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
+  .thread path { fill: none; stroke: var(--red); stroke-width: 1.5; filter: drop-shadow(0 0 6px rgba(212,44,64,.7)); }
+
+  /* ===== POLAROIDS (horizontal) ===== */
+  .works { position: relative; }
+  .works-pin { height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+  .works-head { padding: 0 clamp(16px, 5vw, 80px); display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; }
+  h2 { font: 500 clamp(44px, 6vw, 92px)/.95 var(--serif); }
+  h2 em { font-style: italic; color: var(--red); }
+  .works-head p { color: var(--muted); max-width: 22em; font-size: 15px; }
+  .rope-wrap { position: relative; margin-top: 50px; }
+  .rope { position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 0; overflow: visible; }
+  .rope path { fill: none; stroke: rgba(239,230,220,.35); stroke-width: 1.2; }
+  .track { position: relative; display: flex; gap: clamp(28px, 4vw, 60px); padding: 0 clamp(16px, 5vw, 80px); width: max-content; will-change: transform; }
+  .polaroid {
+    --rot: 0deg; position: relative; z-index: 1; flex: none; width: clamp(240px, 26vw, 360px);
+    background: var(--paper); padding: 14px 14px 64px; color: var(--ink);
+    box-shadow: 0 30px 60px rgba(0,0,0,.55); transform-origin: 50% -30px;
+    transform: rotate(var(--rot)); cursor: pointer; margin-top: 36px;
+  }
+  .polaroid::before { /* clothespin */
+    content: ""; position: absolute; top: -26px; left: 50%; width: 16px; height: 46px; translate: -50% 0;
+    background: linear-gradient(90deg, #c9a27a, #e4c8a4 50%, #b88d63); border-radius: 3px; box-shadow: 0 4px 8px rgba(0,0,0,.4);
+  }
+  .polaroid:nth-child(odd) { margin-top: 66px; }
+  .polaroid .ph { aspect-ratio: 4/5; overflow: hidden; background: #000; }
+  .polaroid img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.15) saturate(.95); transition: transform 1s var(--ease), filter .6s; }
+  .polaroid:hover img { transform: scale(1.06); filter: none; }
+  .polaroid figcaption { position: absolute; left: 18px; right: 18px; bottom: 12px; }
+  .polaroid b { display: block; font: 400 26px/1.05 var(--script); color: var(--wine); }
+  .polaroid small { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b5a55; }
+  .tag { position: absolute; top: 24px; right: 24px; background: var(--red); color: var(--paper); font: 600 10px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; padding: 7px 10px; }
+  .polaroid.end { background: transparent; box-shadow: none; display: grid; place-items: center; padding: 0; color: var(--paper); min-height: 380px; }
+  .polaroid.end::before { display: none; }
+  .polaroid.end a { font: italic 500 34px/1.1 var(--serif); text-align: center; }
+  .polaroid.end a span { display: block; font: 600 12px var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-top: 14px; }
+
+  /* ===== MARQUEE ===== */
+
+  /* ===== SERVICES list with floating preview ===== */
+  section { position: relative; padding: clamp(80px, 12vw, 160px) clamp(16px, 5vw, 80px); isolation: isolate; overflow-x: clip; }
+  html, body { overflow-x: clip; }
+
+  /* quiet background decor */
+  .deco { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .deco-word {
+    position: absolute; white-space: nowrap; line-height: .8;
+    font: 400 clamp(180px, 30vw, 460px)/.8 var(--script); color: transparent;
+    -webkit-text-stroke: 1px rgba(239, 230, 220, .1);
+  }
+  .ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .ambient i { position: absolute; border-radius: 50%; filter: blur(110px); will-change: transform, opacity; }
+  .ambient .a1 { width: 42vmax; height: 42vmax; background: var(--wine); opacity: .2; right: -16vmax; top: -14vmax; }
+  .ambient .a2 { width: 34vmax; height: 34vmax; background: #6a1220; opacity: .16; left: -16vmax; bottom: -14vmax; }
+  .ambient .a3 { width: 46vmax; height: 46vmax; background: var(--cyan); opacity: 0; right: -14vmax; top: 30vh; }
+  /* sits in the empty space to the right of the heading and fades out before the list */
+  .deco-craft { right: clamp(16px, 5vw, 80px); top: clamp(-20px, 1vw, 20px); font-size: clamp(110px, 15vw, 240px); padding: .35em .15em .1em;
+    -webkit-mask: linear-gradient(#000 55%, transparent 92%); mask: linear-gradient(#000 62%, transparent 94%); }
+  @media (max-width: 900px) { .deco-craft { font-size: 96px; top: -10px; right: -10px; } }
+  .sketch { position: absolute; opacity: .12; }
+  .sketch path { fill: none; stroke: var(--paper); stroke-width: 1; stroke-linecap: round; }
+  .sparks { position: fixed; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: screen; }
+  .toc { list-style: none; margin-top: 50px; border-bottom: 1px solid var(--line); }
+  .toc-item { border-top: 1px solid var(--line); }
+  .toc-head {
+    all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
+    display: flex; align-items: baseline; gap: clamp(12px, 2vw, 22px); padding: clamp(20px, 3vw, 30px) 0;
+  }
+  .toc-head:focus-visible { outline: 1px solid var(--red); outline-offset: 4px; }
+  .toc-n { flex: none; width: 48px; font: italic 400 22px/1 var(--serif); color: var(--muted); transition: color .5s; }
+  .toc-item.open .toc-n, .toc-head:hover .toc-n { color: var(--red); }
+  .toc-t { font: 500 clamp(36px, 5vw, 68px)/1 var(--serif); transition: color .5s, letter-spacing .7s var(--ease); white-space: nowrap; }
+  .toc-dots { flex: 1; min-width: 20px; border-bottom: 1px dotted rgba(239,230,220,.28); transform: translateY(-.35em) scaleX(.96); transform-origin: left; transition: transform .8s var(--ease), border-color .5s; }
+  .toc-p { flex: none; font: italic 400 18px/1 var(--serif); color: var(--muted); }
+  .toc-plus { flex: none; position: relative; width: 18px; height: 18px; align-self: center; }
+  .toc-plus::before, .toc-plus::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: var(--paper); transition: transform .6s var(--ease); }
+  .toc-plus::after { transform: rotate(90deg); }
+  .toc-head:hover .toc-t { letter-spacing: .015em; }
+  .toc-head:hover .toc-dots { transform: translateY(-.35em) scaleX(1); border-color: rgba(212,44,64,.6); }
+  .toc-item.open .toc-t { color: var(--red); font-style: italic; }
+  .toc-item.open .toc-plus::after { transform: rotate(0deg); }
+  .toc-item.open .toc-dots { border-color: rgba(212,44,64,.6); transform: translateY(-.35em) scaleX(1); }
+  .toc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .9s var(--ease); }
+  .toc-item.open .toc-body { grid-template-rows: 1fr; }
+  .toc-inner { overflow: hidden; min-height: 0; }
+  .toc-content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(24px, 4vw, 60px); padding: 4px 0 40px 70px; align-items: end; }
+  .toc-content p { color: var(--muted); font-size: 16px; max-width: 28em; opacity: 0; transform: translateY(16px); transition: opacity .7s .2s, transform .9s .2s var(--ease); }
+  .toc-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; opacity: 0; transition: opacity .7s .35s; }
+  .toc-tags li { border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+  .toc-item.open .toc-content p { opacity: 1; transform: none; }
+  .toc-item.open .toc-tags { opacity: 1; }
+  .toc-gallery { display: flex; gap: clamp(10px, 1.6vw, 18px); align-items: flex-end; }
+  .toc-gallery figure { --r: 0deg; flex: 1; min-width: 0; cursor: pointer; }
+  .toc-gallery img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 3px; box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    opacity: 0; filter: blur(12px) grayscale(1) brightness(.5) sepia(.6); transform: translateY(40px) rotate(var(--r));
+    transition: opacity .8s, filter 1.6s var(--ease), transform 1.1s var(--ease);
+  }
+  .toc-gallery figure:nth-child(2) img { transition-delay: .12s; }
+  .toc-gallery figure:nth-child(3) img { transition-delay: .24s; }
+  .toc-item.open .toc-gallery img { opacity: 1; filter: none; transform: rotate(var(--r)); }
+  .toc-item.open .toc-gallery figure:hover img { transform: translateY(-8px) rotate(0deg) scale(1.03); transition-delay: 0s; }
+  .toc-gallery figcaption { font: italic 400 15px var(--serif); color: var(--muted); margin-top: 10px; opacity: 0; transition: opacity .6s .6s; }
+  .toc-item.open .toc-gallery figcaption { opacity: 1; }
+  .deck { position: relative; height: clamp(340px, 32vw, 440px); perspective: 1400px; }
+  .pcard {
+    --i: 0; position: absolute; left: 50%; bottom: clamp(60px, 6vw, 90px); width: clamp(130px, 13vw, 180px); aspect-ratio: 5/7;
+    margin-left: calc(clamp(130px, 13vw, 180px) / -2); border-radius: 12px; padding: 7px;
+    background: var(--paper); box-shadow: 0 24px 50px rgba(0,0,0,.55); cursor: pointer;
+    transform-origin: 50% 120%; transform: rotate(0deg) translateY(30px); opacity: 0;
+    transition: transform 1.1s var(--ease), opacity .6s, box-shadow .4s;
+    transition-delay: calc(var(--i) * 70ms);
+  }
+  .pcard .face { position: relative; height: 100%; border-radius: 7px; overflow: hidden; outline: 1px solid rgba(142,27,42,.7); outline-offset: -5px; }
+  .pcard img { width: 100%; height: 100%; object-fit: cover; }
+  .pcard .pip { position: absolute; z-index: 1; font: 500 18px/1 var(--serif); color: var(--paper); text-shadow: 0 1px 6px rgba(0,0,0,.7); text-align: center; }
+  .pcard .pip small { display: block; font-size: 13px; color: var(--red); }
+  .pcard .pip.tl { top: 10px; left: 10px; } .pcard .pip.br { bottom: 10px; right: 10px; transform: rotate(180deg); }
+  .pcard.back .face {
+    background:
+      radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,.35) 100%),
+      repeating-linear-gradient(45deg, rgba(239,230,220,.13) 0 1px, transparent 1px 14px),
+      repeating-linear-gradient(-45deg, rgba(239,230,220,.13) 0 1px, transparent 1px 14px),
+      var(--wine);
+    display: grid; place-items: center;
+  }
+  .pcard.back .mono { width: 58%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(239,230,220,.55); display: grid; place-items: center; font: 400 34px/1 var(--script); color: var(--paper); box-shadow: 0 0 0 6px rgba(142,27,42,.9), 0 0 0 7px rgba(239,230,220,.35); }
+  .toc-item.open .pcard { opacity: 1; transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)); }
+  .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)) translateY(-34px); box-shadow: 0 40px 70px rgba(0,0,0,.6); transition-delay: 0s; z-index: 5; }
+
+  /* ===== PROCESS: stacked pages ===== */
+  .proc-h { margin-bottom: 14px; }
+  .proc-note { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .process { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(30px, 6vw, 100px); min-height: 100svh; align-items: center; }
+  .pages { position: relative; aspect-ratio: 3/2; width: min(640px, 100%); justify-self: center; perspective: 1600px; }
+  .page {
+    position: absolute; inset: 0; border-radius: 3px 10px 10px 3px; overflow: hidden;
+    transform-origin: left center; box-shadow: 0 30px 70px rgba(0,0,0,.55); backface-visibility: hidden;
+    background: var(--paper-2);
+  }
+  .page img { width: 100%; height: 100%; object-fit: cover; }
+  .page .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 50px 22px 20px; background: linear-gradient(transparent, rgba(17,10,12,.9)); font: italic 400 22px var(--serif); }
+  .steps { list-style: none; }
+  .steps li { padding: 16px 0; border-top: 1px solid var(--line); opacity: .28; transition: opacity .5s; display: grid; grid-template-columns: 56px 1fr; }
+  .steps li.on { opacity: 1; }
+  .steps li::before { content: attr(data-n); font: italic 400 28px/1 var(--serif); color: var(--red); }
+  .steps b { display: block; font: 500 25px/1.15 var(--serif); }
+  .steps span { color: var(--muted); font-size: 15px; }
+
+
+  /* ===== GLITTER INTERLUDE ===== */
+  .glitter { min-height: 100svh; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 6vw, 100px); align-items: center; }
+  .gl-text p { color: var(--muted); max-width: 26em; margin-top: 20px; }
+  .gl-stage { perspective: 1400px; justify-self: center; width: min(520px, 100%, calc(80svh * .72)); }
+  .gl-card { position: relative; aspect-ratio: 1008/1400; border-radius: 10px; overflow: hidden; transform-style: preserve-3d; will-change: transform;
+    box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(239,230,220,.08); }
+  .gl-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .gl-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; pointer-events: none; }
+  .gl-sheen { position: absolute; inset: -20%; pointer-events: none; mix-blend-mode: color-dodge; opacity: var(--sheen, .25);
+    background: linear-gradient(115deg, transparent 30%, rgba(255,160,200,.55) 42%, rgba(160,220,255,.6) 50%, rgba(255,240,180,.5) 58%, transparent 70%);
+    background-size: 250% 250%; background-position: var(--sx, 0%) var(--sy, 50%); }
+  .gl-glare { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255,255,255,.55), transparent 45%); opacity: var(--glare, .4); }
+  @media (max-width: 900px) {
+    .glitter { grid-template-columns: 1fr; align-content: center; gap: 28px; }
+    .gl-stage { width: 86%; }
+  }
+
+  /* ===== ABOUT ===== */
+  .about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(30px, 6vw, 100px); align-items: center; }
+  .portrait { position: relative; }
+  .portrait .frame { overflow: hidden; border-radius: 200px 200px 6px 6px; }
+  .portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(.3) contrast(1.05); scale: 1.15; }
+  .portrait .sig { position: absolute; bottom: -24px; right: -10px; font: 400 64px/1 var(--script); color: var(--red); transform: rotate(-8deg); text-shadow: 0 0 30px rgba(212,44,64,.5); }
+  .quote { font: italic 400 clamp(28px, 3.4vw, 46px)/1.25 var(--serif); }
+  .quote .w { opacity: .15; transition: opacity .3s; }
+  .quote .w.on { opacity: 1; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; border-top: 1px solid var(--line); padding-top: 28px; }
+  .facts b { display: block; font: 500 clamp(40px, 4.5vw, 60px)/1 var(--serif); color: var(--paper); }
+  .facts span { font-size: 13px; color: var(--muted); }
+
+  /* ===== LETTER / CONTACT ===== */
+  .contact { min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
+  .contact .glow { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; background: radial-gradient(var(--wine), transparent 60%); opacity: .5; filter: blur(40px); left: 50%; top: 50%; translate: -50% -50%; pointer-events: none; }
+  .letter {
+    will-change: transform, opacity; backface-visibility: hidden;
+    position: relative; width: min(640px, 100%); background: var(--paper); color: var(--ink);
+    padding: clamp(36px, 6vw, 64px); box-shadow: 0 50px 120px rgba(0,0,0,.6);
+    clip-path: polygon(0 2%, 4% 0, 12% 1.5%, 22% 0, 35% 1%, 48% 0, 60% 1.6%, 74% 0, 86% 1.2%, 100% 0, 99% 30%, 100% 62%, 98.6% 100%, 85% 98.6%, 70% 100%, 55% 98.8%, 40% 100%, 25% 98.5%, 10% 100%, 0 98.6%, 1.2% 60%, 0 28%);
+    background-image: linear-gradient(rgba(42,26,28,.05) 1px, transparent 1px); background-size: 100% 34px;
+  }
+  .letter h2 { font: 400 clamp(46px, 6vw, 72px)/1 var(--script); color: var(--wine); margin-bottom: 22px; }
+  .letter p { font: 400 21px/1.62 var(--serif); margin-bottom: 14px; }
+  .letter .queue { display: inline-block; background: var(--wine); color: var(--paper); font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; padding: 9px 14px; margin: 8px 0 24px; transform: rotate(-2deg); }
+  .seal {
+    position: absolute; right: clamp(20px, 5vw, 50px); bottom: clamp(20px, 5vw, 50px);
+    width: 120px; height: 120px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #e0485a, var(--wine) 60%, #5a0f19);
+    display: grid; place-items: center; color: var(--paper); text-align: center;
+    font: 600 11px/1.3 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(142,27,42,.6), inset 0 -6px 12px rgba(0,0,0,.3);
+    transition: transform .5s var(--ease);
+  }
+  .seal:hover { transform: rotate(-12deg) scale(1.08); }
+  .seal b { display: block; font: 400 30px/1 var(--script); text-transform: none; letter-spacing: 0; margin-bottom: 2px; }
+  .letter .sign { font: 400 40px/1 var(--script); color: var(--wine); margin-top: 18px; }
+  .letter .alt { font: 500 13px var(--sans); letter-spacing: .1em; text-transform: uppercase; display: flex; gap: 22px; margin-top: 26px; }
+  .letter .alt a { border-bottom: 1px solid currentColor; }
+  footer { padding: 30px clamp(16px, 5vw, 80px); display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+
+  /* lightbox */
+  .lb { position: fixed; inset: 0; z-index: 80; background: rgba(10,6,7,.94); display: grid; place-items: center; padding: 30px 16px; opacity: 0; pointer-events: none; transition: opacity .5s; }
+  .lb.on { opacity: 1; pointer-events: auto; }
+  .lb img { max-height: 84vh; max-width: min(1100px, 100%); object-fit: contain; box-shadow: 0 40px 100px rgba(0,0,0,.7); transform: scale(.92); transition: transform .6s var(--ease); }
+  .lb.on img { transform: none; }
+  .lb p { margin-top: 18px; text-align: center; font: italic 400 22px var(--serif); }
+
+  @media (max-width: 900px) {
+    .status, .hint { display: none; }
+    .works-pin { height: auto; padding: 100px 0 60px; }
+    .track-scroll { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 30px; }
+    .polaroid { scroll-snap-align: center; width: 72vw; }
+    .process, .about { grid-template-columns: 1fr; }
+    .toc-n { width: 30px; font-size: 18px; }
+    .toc-t { font-size: 34px; }
+    .toc-p { display: none; }
+    .toc-content { grid-template-columns: 1fr; padding: 0 0 30px; gap: 22px; }
+    .toc-content p { font-size: 15px; }
+    .deck { height: 300px; }
+    .pcard { width: 118px; margin-left: -59px; bottom: 50px; }
+    .toc-item.open .pcard { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)); }
+    .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)) translateY(-20px); }
+    /* process: pinned book, compact text */
+    .process { min-height: 100svh; align-content: start; gap: 18px; padding-top: 84px; padding-bottom: 20px; }
+    .proc-text { display: contents; }
+    .process .chapter { order: 1; margin-bottom: 0; }
+    .proc-h { order: 2; font-size: 40px; margin: 0; }
+    .proc-note { order: 3; margin: 0; font-size: 13px; }
+    .pages { order: 4; width: 100%; perspective: 1000px; }
+    .steps { order: 5; }
+    .steps li { padding: 9px 0; grid-template-columns: 40px 1fr; }
+    .steps li::before { font-size: 22px; }
+    .steps b { font-size: 21px; }
+    .steps span { display: block; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s; font-size: 13px; line-height: 1.45; }
+    .steps li.cur span { max-height: 90px; opacity: 1; margin-top: 4px; }
+    .letter .queue { font-size: 10px; letter-spacing: .08em; }
+    .facts { grid-template-columns: 1fr 1fr 1fr; }
+    .seal { width: 92px; height: 92px; font-size: 9px; position: relative; right: auto; bottom: auto; margin-top: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .grain, .hint::after, .status i { animation: none; }
+  }
+</style>
+</head>
+<body class="loading">
+
+<div class="ambient" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<div class="paper" aria-hidden="true"></div>
+<div class="grain"></div>
+<canvas class="sparks" aria-hidden="true"></canvas>
+<div class="cursor"></div>
+<div class="cursor-ring"><span>Открыть</span></div>
+
+<div class="loader" aria-hidden="true">
+  <svg viewBox="0 0 520 160"><text x="50%" y="115" text-anchor="middle">Linel Em</text></svg>
+</div>
+
+<nav>
+  <a class="logo" href="#top">Linel Em</a>
+  <div class="nav-right">
+    <div class="status"><i></i>Запись на 2027 год</div>
+    <button class="sound" aria-pressed="false" aria-label="Включить музыку" data-on="Включить музыку" data-off="Выключить музыку" data-cursor="Включить"><svg class="note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5V5.5l10-2v12"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/></svg><span class="bars"><i></i><i></i><i></i></span></button>
+    <div class="lang"><span>RU</span>/<a href="https://linelem.com/" hreflang="en" lang="en">EN</a></div>
+  </div>
+</nav>
+
+<!-- I. HERO -->
+<header class="hero" id="top">
+  <div class="hero-art">
+    <img class="dim" src="/img/polaroid.jpg" alt="">
+    <img class="lit" src="/img/polaroid.jpg" alt="Иллюстрация Linel Em: пара в красном свете на фоне полароидов">
+  </div>
+  <div class="hero-content">
+    <div class="chapter">Глава I · Иллюстратор</div>
+    <h1><span class="line">Рисую</span><span class="line">истории,</span><span class="line">в которые <em>влюбляются</em></span></h1>
+    <p>Иллюстрации для книг и не только: обложки, развороты, карты, арты по персонажам и мерч. От первого эскиза до файлов в типографию.</p>
+  </div>
+  <div class="hint">Листайте</div>
+</header>
+
+<!-- II. WORKS -->
+<section class="works" id="works" style="padding:0">
+  <div class="works-pin" style="position:relative;isolation:isolate">
+    <div class="deco" aria-hidden="true">
+      <span class="deco-word" data-drift="works" style="left:-4%;bottom:2%">Linel Em · снимки · истории</span>
+    </div>
+    <div class="works-head">
+      <div>
+        <div class="chapter">Глава II · Работы</div>
+        <h2>Снимки <em>на&nbsp;нитке</em></h2>
+      </div>
+      <p>Изданные обложки, авторские переплёты и мерч. Нажмите на снимок, чтобы рассмотреть.</p>
+    </div>
+    <div class="rope-wrap track-scroll">
+      <div class="track">
+        <svg class="rope" aria-hidden="true"><path/></svg>
+        <figure class="polaroid" style="--rot:-3deg" data-full="/img/erroy.jpg" data-cap="«Мой милый Эрроу» · Саффрон А. Кент · Молодёжка Эксмо">
+          <div class="ph"><img src="/img/erroy.jpg" alt="Обложка «Мой милый Эрроу»" style="object-position:82% 30%"></div>
+          <span class="tag">Эксмо</span>
+          <figcaption><b>Мой милый Эрроу</b><small>Саффрон А. Кент · полный разворот</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:1.5deg" data-full="/img/zolushka.jpg" data-cap="«Партия Золушки» · Юлия Медникова · Румперия">
+          <div class="ph"><img src="/img/zolushka.jpg" alt="Обложка «Партия Золушки»" style="object-position:80% 35%"></div>
+          <span class="tag">Румперия</span>
+          <figcaption><b>Партия Золушки</b><small>Юлия Медникова · полный разворот</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:2deg" data-full="/img/prepod.jpg" data-cap="«Преподаватель» · Юлия Хокка · Эксмо">
+          <div class="ph"><img src="/img/prepod.jpg" alt="Обложка «Преподаватель»" style="object-position:75% 40%"></div>
+          <span class="tag">Эксмо</span>
+          <figcaption><b>Преподаватель</b><small>Юлия Хокка · разворот</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:-1.5deg" data-full="/img/obet.jpg" data-cap="«Непреложный обет» · LunarOcean · авторский переплёт с красным срезом">
+          <div class="ph"><img src="/img/obet.jpg" alt="Авторский переплёт «Непреложный обет»"></div>
+          <figcaption><b>Непреложный обет</b><small>Авторский переплёт · красный срез</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:-2.5deg" data-full="/img/teni.jpg" data-cap="«Злые тени» · обложка">
+          <div class="ph"><img src="/img/teni.jpg" alt="Обложка «Злые тени»" style="object-position:50% 25%"></div>
+          <figcaption><b>Злые тени</b><small>Обложка</small></figcaption>
+        </figure>
+        <div class="polaroid end">
+          <a href="https://t.me/LinelEm7" target="_blank" rel="noopener">Ещё сотни работ<br>в Telegram<span>@LinelEm7 →</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- III. SERVICES -->
+<section id="services">
+  <div class="deco" aria-hidden="true">
+    <span class="deco-word deco-craft" data-parallax="-10">Ремесло</span>
+  </div>
+  <div class="chapter">Глава III · Оглавление</div>
+  <h2>Что я <em>рисую</em></h2>
+  <ol class="toc">
+    <li class="toc-item open">
+      <button class="toc-head" aria-expanded="true" data-cursor="Закрыть"><span class="toc-n">I</span><span class="toc-t">Обложки</span><span class="toc-dots"></span><span class="toc-p">стр. 1</span><span class="toc-plus"></span></button>
+      <div class="toc-body"><div class="toc-inner"><div class="toc-content">
+        <div><p>Лицевая сторона или полный разворот с корешком и задником. Подстраиваю сетку, вылеты и место под текст под вашу типографию.</p>
+          <ul class="toc-tags"><li>лицевая сторона</li><li>разворот</li><li>суперобложка</li><li>переплёт</li></ul></div>
+        <div class="toc-gallery">
+          <figure style="--r:-2deg" data-full="/img/groza.jpg" data-cap="«После грозы я — небо» · Алена Кот"><img src="/img/groza.jpg" alt="Обложка «После грозы я — небо»" loading="lazy"><figcaption>После грозы я — небо</figcaption></figure>
+          <figure style="--r:1.5deg" data-full="/img/kanon.jpg" data-cap="«Мы с тобой (не) канон» · читательский дневник"><img src="/img/kanon.jpg" alt="Обложка читательского дневника" loading="lazy"><figcaption>Мы с тобой (не) канон</figcaption></figure>
+        </div>
+      </div></div></div>
+    </li>
+    <li class="toc-item">
+      <button class="toc-head" aria-expanded="false" data-cursor="Открыть"><span class="toc-n">II</span><span class="toc-t">Иллюстрации</span><span class="toc-dots"></span><span class="toc-p">стр. 2</span><span class="toc-plus"></span></button>
+      <div class="toc-body"><div class="toc-inner"><div class="toc-content">
+        <div><p>Внутренние развороты, заставки к главам, форзацы и нахзацы. Арты по персонажам для авторов и читателей.</p>
+          <ul class="toc-tags"><li>развороты</li><li>заставки к главам</li><li>форзацы</li><li>арты по персонажам</li></ul></div>
+        <div class="toc-gallery">
+          <figure style="--r:-1.5deg" data-full="/img/spread-thread.jpg" data-cap="Полностраничная иллюстрация в книге"><img src="/img/spread-thread.jpg" alt="Иллюстрация на развороте книги" loading="lazy" style="object-position:60% 50%"><figcaption>Иллюстрация в книге</figcaption></figure>
+          <figure style="--r:2deg" data-full="/img/corridor.jpg" data-cap="Арт по персонажам"><img src="/img/corridor.jpg" alt="Пара в синем свете коридора" loading="lazy" style="object-position:55% 25%"><figcaption>Арт по персонажам</figcaption></figure>
+        </div>
+      </div></div></div>
+    </li>
+    <li class="toc-item">
+      <button class="toc-head" aria-expanded="false" data-cursor="Открыть"><span class="toc-n">III</span><span class="toc-t">Карты</span><span class="toc-dots"></span><span class="toc-p">стр. 3</span><span class="toc-plus"></span></button>
+      <div class="toc-body"><div class="toc-inner"><div class="toc-content">
+        <div><p>Игральные и коллекционные карты, колоды таро и оракулы: лица и рубашка в одном стиле, с персонажами вашей истории.</p>
+          <ul class="toc-tags"><li>игральные карты</li><li>таро</li><li>оракулы</li><li>рубашка</li></ul></div>
+        <div class="deck">
+          <figure class="pcard back" style="--i:0" data-full="/img/hatter.jpg" data-cap="Рубашка и лица карт в одном стиле"><div class="face"><span class="mono">LE</span></div></figure>
+          <figure class="pcard" style="--i:1" data-full="/img/cards.jpg" data-cap="Коллекционная карта"><div class="face"><img src="/img/cards.jpg" alt="" loading="lazy" style="object-position:33% 45%"></div></figure>
+          <figure class="pcard" style="--i:2" data-full="/img/cards-hd.jpg" data-cap="Двусторонние карты для The Serpentarium"><div class="face"><img src="/img/cards-hd.jpg" alt="" loading="lazy" style="object-position:33% 50%"></div></figure>
+          <figure class="pcard" style="--i:3" data-full="/img/hatter.jpg" data-cap="Игральная карта: туз пик"><div class="face"><img src="/img/hatter.jpg" alt="" loading="lazy" style="object-position:62% 55%"></div></figure>
+        </div>
+      </div></div></div>
+    </li>
+    <li class="toc-item">
+      <button class="toc-head" aria-expanded="false" data-cursor="Открыть"><span class="toc-n">IV</span><span class="toc-t">Мерч</span><span class="toc-dots"></span><span class="toc-p">стр. 4</span><span class="toc-plus"></span></button>
+      <div class="toc-body"><div class="toc-inner"><div class="toc-content">
+        <div><p>Всё, что делает издание коллекционным: акриловые фигурки, открытки и комиксы, закладки, арт для окрашенного среза.</p>
+          <ul class="toc-tags"><li>акриловые фигурки</li><li>открытки</li><li>закладки</li><li>окрашенный срез</li></ul></div>
+        <div class="toc-gallery">
+          <figure style="--r:-2deg" data-full="/img/acrylic.jpg" data-cap="Акриловая фигурка в деревянной коробке"><img src="/img/acrylic.jpg" alt="Акриловая фигурка" loading="lazy" style="object-position:55% 40%"><figcaption>Акриловая фигурка</figcaption></figure>
+          <figure style="--r:1.5deg" data-full="/img/comic.jpg" data-cap="Открытка-комикс · коллаборация с «Уютным мерчем»"><img src="/img/comic.jpg" alt="Открытка-комикс" loading="lazy" style="object-position:33% 50%"><figcaption>Открытка-комикс</figcaption></figure>
+        </div>
+      </div></div></div>
+    </li>
+  </ol>
+</section>
+
+<!-- IV. PROCESS -->
+<section class="process" id="process">
+  <div class="deco" aria-hidden="true">
+    <svg class="sketch" viewBox="0 0 600 400" style="width:60%;left:-6%;bottom:-4%"><path d="M40 360 C 120 250, 160 120, 260 80 S 420 60, 520 140"/><path d="M60 330 C 140 240, 190 140, 280 110 S 430 90, 540 170"/><path d="M220 380 C 240 300, 300 240, 380 230"/><path d="M90 120 Q 130 90 170 110 T 250 100"/><circle cx="470" cy="300" r="46" style="fill:none;stroke:#efe6dc"/><path d="M430 300 L 510 300 M470 260 L 470 340"/></svg>
+  </div>
+  <div class="pages">
+    <div class="page"><img src="/img/step5.jpg" alt="Финальный разворот обложки «Мой милый Эрроу»"><div class="lbl">V. Сборка</div></div>
+    <div class="page"><img src="/img/step4.jpg" alt="Детализация: красные ленты и контрастный свет"><div class="lbl">IV. Детализация</div></div>
+    <div class="page"><img src="/img/step3.jpg" alt="Покрас: подобраны цвета"><div class="lbl">III. Покрас</div></div>
+    <div class="page"><img src="/img/step2.jpg" alt="Черновой вариант композиции"><div class="lbl">II. Черновой вариант</div></div>
+    <div class="page"><img src="/img/step1.jpg" alt="Четыре наброска композиции"><div class="lbl">I. Выбор композиции</div></div>
+  </div>
+  <div class="proc-text">
+    <div class="chapter">Глава IV · Процесс</div>
+    <h2 class="proc-h">Как рождается <em>обложка</em></h2>
+    <p class="proc-note">На примере «Мой милый Эрроу», Саффрон А. Кент, Молодёжка Эксмо</p>
+    <ol class="steps">
+      <li data-n="I"><div><b>Выбор композиции</b><span>Несколько набросков. Здесь объединили половинки двух: Салем, пишущую письмо, и взгляд героев.</span></div></li>
+      <li data-n="II"><div><b>Черновой вариант</b><span>Компоновка всего разворота: письмо на заднике, фигуры героев, место под текст.</span></div></li>
+      <li data-n="III"><div><b>Покрас</b><span>Подбираем палитру и свет, прежде чем уходить в детали.</span></div></li>
+      <li data-n="IV"><div><b>Детализация</b><span>Внезапная идея с красными лентами и контрастом, как на другом арте Linel Em.</span></div></li>
+      <li data-n="V"><div><b>Сборка</b><span>Цвета ярче, надписи, корешок, задник и файлы для типографии.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- GLITTER INTERLUDE -->
+<section class="glitter" id="glitter">
+  <div class="gl-text">
+    <div class="chapter">Интерлюдия · Глиттер</div>
+    <h2>Снег, который <em>сверкает</em></h2>
+    <p>Иллюстрации под спецпокрытия: глиттер, голографию, фольгу. Заранее продумываю, где ляжет блеск, чтобы на печати картинка оживала в свете.</p>
+  </div>
+  <div class="gl-stage">
+    <div class="gl-card">
+      <img src="/img/snow.jpg?v=3" alt="Пара на заснеженном крыльце, иллюстрация под глиттерное покрытие" loading="lazy">
+      <canvas aria-hidden="true"></canvas>
+      <div class="gl-sheen"></div>
+      <div class="gl-glare"></div>
+    </div>
+  </div>
+</section>
+
+<!-- V. ABOUT -->
+<section class="about">
+  <div class="deco" aria-hidden="true">
+    <span class="deco-word" data-parallax="14" style="left:-4%;bottom:-6%">Linel</span>
+  </div>
+  <div class="portrait">
+    <div class="frame"><img src="/img/artist.jpg" alt="Художница Linel Em"></div>
+    <div class="sig">Linel Em</div>
+  </div>
+  <div>
+    <div class="chapter">Глава V · Автор</div>
+    <p class="quote" data-words>Я рисую напряжение между героями: взгляд, жест и свет, который рассказывает историю раньше аннотации.</p>
+    <div class="facts">
+      <div><b data-count="2027">0</b><span>до этого года расписана очередь</span></div>
+      <div><b data-count="290" data-suffix="+">0</b><span>работ в Telegram-портфолио</span></div>
+      <div><b>Эксмо</b><span>и независимые авторы</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VI. LETTER -->
+<section class="contact" id="contact">
+  <div class="glow"></div>
+  <div class="letter">
+    <div class="chapter" style="color:var(--wine)">Глава VI · Письмо</div>
+    <h2>Мой милый автор,</h2>
+    <p>если вы читаете это письмо, значит, вашей книге нужна обложка, мимо которой не пройдут.</p>
+    <p>Расскажите мне о сюжете, героях, сроках и формате. Я отвечу и предложу ближайшее окно.</p>
+    <span class="queue">Сейчас идёт запись на 2027 год</span>
+    <div class="sign">Linel Em</div>
+    <div class="alt">
+      <a href="https://t.me/LinelEm7" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.instagram.com/linel.em/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <a class="seal" href="https://t.me/LinelEm7" target="_blank" rel="noopener" data-cursor="Написать"><span><b>Linel</b>написать</span></a>
+  </div>
+</section>
+
+<footer><span>© 2026 Linel Em</span><span>Иллюстрации для книг</span></footer>
+
+<div class="lb" role="dialog" aria-modal="true"><div><img alt=""><p></p></div></div>
+
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover)').matches;
+  const desktop = matchMedia('(min-width: 901px)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+
+
+  /* background music: a soft generative piece (warm pad + music-box notes), off until the visitor turns it on */
+  (() => {
+    const btn = document.querySelector('.sound');
+    let ctx, master, playing = false, timer, chordIdx = 0;
+    const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
+    // Am - Fmaj7 - C - Em7: wistful, a little romantic
+    const chords = [[45, 52, 57, 60, 64], [41, 48, 57, 60, 64], [48, 55, 60, 64, 67], [40, 47, 55, 59, 62]];
+    const bells = [[69, 72, 76, 81], [69, 72, 76, 77], [67, 72, 76, 79], [67, 71, 74, 79]];
+    const init = () => {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain(); master.gain.value = 0;
+      const tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 2400;
+      // simple hall: decaying noise impulse
+      const len = ctx.sampleRate * 4.5, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+      for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+      const verb = ctx.createConvolver(); verb.buffer = ir;
+      const wet = ctx.createGain(); wet.gain.value = .55;
+      master.connect(tone); tone.connect(ctx.destination); tone.connect(verb); verb.connect(wet); wet.connect(ctx.destination);
+    };
+    const pad = (notes, t, dur) => {
+      const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 700; f.Q.value = .4; f.connect(master);
+      notes.forEach((m, i) => [-6, 6].forEach((det) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = i === 0 ? 'sine' : 'triangle'; o.frequency.value = hz(m); o.detune.value = det;
+        const peak = i === 0 ? .07 : .028;
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(peak, t + 3); g.gain.setValueAtTime(peak, t + dur - 1); g.gain.linearRampToValueAtTime(0, t + dur + 3);
+        o.connect(g); g.connect(f); o.start(t); o.stop(t + dur + 3.2);
+      }));
+    };
+    const bell = (m, t) => {
+      const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = hz(m); o2.type = 'sine'; o2.frequency.value = hz(m) * 2.01;
+      const g2 = ctx.createGain(); g2.gain.value = .25;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.05, t + .02); g.gain.exponentialRampToValueAtTime(.0005, t + 3.2);
+      o.connect(g); o2.connect(g2); g2.connect(g); g.connect(master);
+      o.start(t); o2.start(t); o.stop(t + 3.3); o2.stop(t + 3.3);
+    };
+    const bar = () => {
+      const t = ctx.currentTime + .1, dur = 8;
+      pad(chords[chordIdx], t, dur);
+      const b = bells[chordIdx];
+      let s = .8 + Math.random() * 1.5;
+      while (s < dur - 1) { if (Math.random() < .7) bell(b[Math.floor(Math.random() * b.length)], t + s); s += 1.4 + Math.random() * 2.2; }
+      chordIdx = (chordIdx + 1) % chords.length;
+      timer = setTimeout(bar, dur * 1000);
+    };
+    const set = (on) => {
+      playing = on;
+      btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', on ? btn.dataset.off : btn.dataset.on);
+      try { localStorage.setItem('le-sound', on ? '1' : '0'); } catch (e) {}
+      if (on) {
+        if (!ctx) init();
+        ctx.resume(); master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.setTargetAtTime(.5, ctx.currentTime, 1.5);
+        if (!timer) bar();
+      } else if (ctx) {
+        master.gain.setTargetAtTime(0, ctx.currentTime, .6);
+        clearTimeout(timer); timer = null;
+        setTimeout(() => { if (!playing) ctx.suspend(); }, 2500);
+      }
+    };
+    btn.addEventListener('click', () => set(!playing));
+    // a visitor who turned music on before gets it back on their first interaction (browsers block autoplay)
+    let pref = null; try { pref = localStorage.getItem('le-sound'); } catch (e) {}
+    if (pref === '1') addEventListener('pointerdown', (e) => { if (!playing && !btn.contains(e.target)) set(true); }, { once: true });
+    document.addEventListener('visibilitychange', () => { if (ctx && playing) document.hidden ? ctx.suspend() : ctx.resume(); });
+  })();
+
+
+  /* glitter: sparkles live on the bright specks of the art, twinkle on their own, and shine harder as you scroll in */
+  (() => {
+    const sec = document.querySelector('.glitter'), card = sec.querySelector('.gl-card'), img = card.querySelector('img'),
+      cv = card.querySelector('canvas'), ctx = cv.getContext('2d'), sheen = card.querySelector('.gl-sheen'), glare = card.querySelector('.gl-glare');
+    let pts = [], W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), visible = false, boost = 0, px = 0, py = 0, raf;
+    const sample = () => {
+      const s = 260, k = img.naturalHeight / img.naturalWidth, oc = document.createElement('canvas');
+      oc.width = s; oc.height = Math.round(s * k);
+      const o = oc.getContext('2d', { willReadFrequently: true }); o.drawImage(img, 0, 0, oc.width, oc.height);
+      const d = o.getImageData(0, 0, oc.width, oc.height).data, bright = [];
+      for (let y = 0; y < oc.height; y++) for (let x = 0; x < oc.width; x++) {
+        const i = (y * oc.width + x) * 4, l = .3 * d[i] + .59 * d[i + 1] + .11 * d[i + 2];
+        if (l > 175) bright.push([x / oc.width, y / oc.height, l]);
+      }
+      const n = innerWidth < 900 ? 2400 : 4500; pts = [];
+      for (let i = 0; i < n; i++) {
+        const useBright = bright.length && Math.random() < .8, b = useBright ? bright[Math.floor(Math.random() * bright.length)] : [Math.random(), Math.random(), 150];
+        pts.push({ x: b[0], y: b[1], ph: Math.random() * 6.28, sp: .6 + Math.random() * 2.2, sz: .3 + Math.random() * .7, warm: Math.random() < .25 });
+      }
+    };
+    const size = () => { const r = card.getBoundingClientRect(); W = cv.width = r.width * dpr; H = cv.height = r.height * dpr; };
+    const draw = (t) => {
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      const k = .9 + boost * .3;
+      for (const p of pts) {
+        const tw = Math.pow(Math.max(0, Math.sin(t * p.sp + p.ph)), 5) * k;
+        if (tw < .02) continue;
+        const x = p.x * W, y = p.y * H, r = p.sz * dpr * (1 + tw * 2.6);
+        const c = p.warm ? '255,232,200' : '245,250,255';
+        ctx.fillStyle = `rgba(${c},${Math.min(1, tw * 2.2)})`;
+        ctx.beginPath(); ctx.arc(x, y, p.sz * dpr * .85, 0, 6.283); ctx.fill();
+        if (tw > .45) { ctx.fillStyle = `rgba(${c},${tw * .35})`; ctx.beginPath(); ctx.arc(x, y, p.sz * dpr * 2.4, 0, 6.283); ctx.fill(); }
+        if (tw < .3) continue; // faint specks stay as dots, only brighter ones get rays
+        ctx.strokeStyle = `rgba(${c},${Math.min(1, tw * 1.5)})`; ctx.lineWidth = .5 * dpr;
+        ctx.beginPath(); ctx.moveTo(x - r, y); ctx.lineTo(x + r, y); ctx.moveTo(x, y - r); ctx.lineTo(x, y + r); ctx.stroke();
+        if (tw > .75) { ctx.lineWidth = .4 * dpr; const q = r * .45; ctx.beginPath(); ctx.moveTo(x - q, y - q); ctx.lineTo(x + q, y + q); ctx.moveTo(x + q, y - q); ctx.lineTo(x - q, y + q); ctx.stroke(); }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    };
+    const loop = (ms) => {
+      const t = ms / 1000;
+      if (!reduce) {
+        // idle sway + pointer, both stronger as the scroll boost grows
+        const amp = 5 + boost * 4, ry = Math.sin(t * .55) * amp + Math.sin(t * 1.3) * 1.2 + px * (4 + boost * 6), rx = Math.cos(t * .43) * amp * .6 - py * (3 + boost * 5);
+        card.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg) scale(${1 + boost * .03 + Math.sin(t * .6) * .008})`;
+        const sx = 50 + Math.sin(t * .5) * 48 + ry * 3, sy = 50 + Math.cos(t * .4) * 35 - rx * 3;
+        sheen.style.setProperty('--sx', sx + '%'); sheen.style.setProperty('--sy', sy + '%');
+        sheen.style.setProperty('--sheen', (.07 + boost * .08).toFixed(3));
+        glare.style.setProperty('--gx', (50 + ry * 4) + '%'); glare.style.setProperty('--gy', (35 - rx * 4) + '%');
+        glare.style.setProperty('--glare', (.3 + boost * .25).toFixed(3));
+      }
+      draw(reduce ? t * .3 : t);
+      if (visible) raf = requestAnimationFrame(loop);
+    };
+    const start = () => { if (!pts.length) sample(); size(); cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && img.complete && img.naturalWidth) start(); }, { rootMargin: '100px' }).observe(sec);
+    img.addEventListener('load', () => { if (visible) start(); });
+    addEventListener('resize', () => { if (visible) size(); });
+    card.addEventListener('pointermove', (e) => { const r = card.getBoundingClientRect(); px = (e.clientX - r.left) / r.width - .5; py = (e.clientY - r.top) / r.height - .5; });
+    card.addEventListener('pointerleave', () => { px = 0; py = 0; });
+    addEventListener('deviceorientation', (e) => { if (e.gamma == null) return; px = Math.max(-.5, Math.min(.5, e.gamma / 60)); py = Math.max(-.5, Math.min(.5, (e.beta - 45) / 60)); });
+    // scroll boost: rises as the card comes to the centre of the screen
+    ScrollTrigger.create({ trigger: sec, start: 'top 90%', end: 'center 50%', scrub: true, onUpdate: (st) => { boost = st.progress; } });
+    gsap.from('.gl-text p', { y: 40, autoAlpha: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: sec, start: 'top 75%' } });
+    gsap.from('.gl-stage', { y: 80, autoAlpha: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: sec, start: 'top 80%' } });
+  })();
+
+  /* split hero title into letters */
+  document.querySelectorAll('.hero h1 .line').forEach((line) => {
+    const walk = (node) => [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((word) => {
+          if (!word) return;
+          if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const w = document.createElement('span'); w.style.whiteSpace = 'nowrap';
+          [...word].forEach((c) => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = c; w.appendChild(s); });
+          frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else walk(n);
+    });
+    walk(line);
+  });
+
+  /* split quote into words */
+  const q = document.querySelector('[data-words]');
+  q.innerHTML = q.textContent.split(' ').map((w) => `<span class="w">${w}</span>`).join(' ');
+
+  /* preloader → intro */
+  const lit = document.querySelector('.hero-art .lit');
+  const intro = gsap.timeline({ onComplete: () => document.body.classList.remove('loading') });
+  if (reduce) {
+    gsap.set('.loader', { display: 'none' });
+    lit.style.setProperty('--r', '320px');
+    document.body.classList.remove('loading');
+  } else {
+    intro
+      .to('.loader text', { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' })
+      .to('.loader text', { fill: '#efe6dc', duration: .5 }, '-=.4')
+      .to('.loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '+=.2')
+      .set('.loader', { display: 'none' })
+      .from('.hero-art img', { scale: 1.25, duration: 2.2, ease: 'expo.out' }, '-=.9')
+      .from('.hero h1 .ch', { yPercent: 110, rotate: 8, duration: 1.1, stagger: .025, ease: 'expo.out' }, '-=1.8')
+      .from('.hero .chapter, .hero p, .hint', { opacity: 0, y: 20, duration: .9, stagger: .1 }, '-=.9')
+      .to(lit, { '--r': fine ? '260px' : '420px', duration: 1.4, ease: 'expo.out' }, '-=1.2');
+  }
+  gsap.set(lit, { '--r': '0px' });
+  if (reduce) lit.style.setProperty('--r', '320px');
+
+  /* spotlight follows cursor */
+  const hero = document.querySelector('.hero');
+  const spot = { x: 62, y: 38 };
+  const paint = () => { lit.style.setProperty('--x', spot.x + '%'); lit.style.setProperty('--y', spot.y + '%'); };
+  paint();
+  const setX = gsap.quickTo(spot, 'x', { duration: .6, ease: 'power3', onUpdate: paint });
+  const setY = gsap.quickTo(spot, 'y', { duration: .6, ease: 'power3', onUpdate: paint });
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    setX(((e.clientX - r.left) / r.width) * 100);
+    setY(((e.clientY - r.top) / r.height) * 100);
+  });
+  if (!fine && !reduce) gsap.to(spot, { x: 38, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut', onUpdate: paint });
+  gsap.to('.hero-art img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-content', { yPercent: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* custom cursor */
+  if (fine) {
+    const dot = document.querySelector('.cursor'), ring = document.querySelector('.cursor-ring'), label = ring.querySelector('span');
+    const dx = gsap.quickTo(dot, 'x', { duration: .1 }), dy = gsap.quickTo(dot, 'y', { duration: .1 });
+    const rx = gsap.quickTo(ring, 'x', { duration: .45, ease: 'power3' }), ry = gsap.quickTo(ring, 'y', { duration: .45, ease: 'power3' });
+    addEventListener('pointermove', (e) => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
+    document.querySelectorAll('.polaroid:not(.end), [data-cursor], .toc-gallery figure, .pcard').forEach((el) => {
+      el.addEventListener('pointerenter', () => { label.textContent = el.dataset.cursor || 'Открыть'; ring.classList.add('big'); });
+      el.addEventListener('pointerleave', () => ring.classList.remove('big'));
+    });
+  }
+
+  /* horizontal polaroid gallery */
+  const track = document.querySelector('.track');
+  if (desktop && !reduce) {
+    const dist = () => track.scrollWidth - innerWidth;
+    const tween = gsap.to(track, {
+      x: () => -dist(), ease: 'none',
+      scrollTrigger: { trigger: '.works', start: 'top top', end: () => '+=' + dist(), pin: '.works-pin', scrub: 1, invalidateOnRefresh: true,
+        onUpdate: (st) => {
+          const v = gsap.utils.clamp(-12, 12, st.getVelocity() / 140);
+          gsap.to('.polaroid:not(.end)', { rotate: (i, el) => parseFloat(getComputedStyle(el).getPropertyValue('--rot')) - v, duration: .8, ease: 'power3', overwrite: true });
+        } }
+    });
+    gsap.from('.polaroid', { y: -120, opacity: 0, rotate: 12, stagger: .08, duration: 1.2, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.works', start: 'top 70%' } });
+  }
+  /* rope passes exactly through every clothespin */
+  const rope = document.querySelector('.rope'), ropePath = rope.querySelector('path');
+  const drawRope = () => {
+    const w = track.scrollWidth, h = track.offsetHeight;
+    rope.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const pts = [...track.querySelectorAll('.polaroid:not(.end)')].map((p) => [p.offsetLeft + p.offsetWidth / 2, p.offsetTop - 14]);
+    if (!pts.length) return;
+    const all = [[0, pts[0][1] - 30], ...pts, [w, pts[pts.length - 1][1] - 30]];
+    let d = `M${all[0][0]} ${all[0][1]}`;
+    for (let i = 1; i < all.length; i++) {
+      const [x0, y0] = all[i - 1], [x1, y1] = all[i];
+      d += ` Q ${(x0 + x1) / 2} ${Math.max(y0, y1) + 22} ${x1} ${y1}`;
+    }
+    ropePath.setAttribute('d', d);
+  };
+  drawRope();
+  addEventListener('resize', drawRope);
+  addEventListener('load', drawRope);
+  document.fonts && document.fonts.ready.then(drawRope);
+
+  /* swing on hover */
+  document.querySelectorAll('.polaroid:not(.end)').forEach((p) => {
+    p.addEventListener('pointerenter', () => {
+      const base = parseFloat(getComputedStyle(p).getPropertyValue('--rot'));
+      gsap.fromTo(p, { rotate: base + 6 }, { rotate: base, duration: 1.8, ease: 'elastic.out(1.2, .25)', overwrite: true });
+    });
+  });
+
+  /* lightbox */
+  const lb = document.querySelector('.lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+  document.querySelectorAll('.polaroid[data-full]').forEach((p) => p.addEventListener('click', () => {
+    lbImg.src = p.dataset.full; lbImg.alt = p.dataset.cap; lbCap.textContent = p.dataset.cap; lb.classList.add('on');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+  /* services: table of contents accordion */
+  const tocItems = document.querySelectorAll('.toc-item');
+  let tocTimer;
+  tocItems.forEach((it) => it.querySelector('.toc-head').addEventListener('click', () => {
+    const open = !it.classList.contains('open');
+    // an open chapter above this one is about to collapse: its height will vanish from above us
+    const prev = [...tocItems].find((o) => o !== it && o.classList.contains('open'));
+    const shrink = prev && (prev.compareDocumentPosition(it) & Node.DOCUMENT_POSITION_FOLLOWING) ? prev.querySelector('.toc-body').offsetHeight : 0;
+    const headTop = it.getBoundingClientRect().top - shrink; // where the heading will end up on screen
+    tocItems.forEach((o) => {
+      const on = o === it && open;
+      o.classList.toggle('open', on);
+      const b = o.querySelector('.toc-head'); b.setAttribute('aria-expanded', on); b.dataset.cursor = on ? 'Закрыть' : 'Открыть';
+    });
+    const ring = document.querySelector('.cursor-ring span'); if (ring) ring.textContent = it.querySelector('.toc-head').dataset.cursor;
+    clearTimeout(tocTimer); tocTimer = setTimeout(() => ScrollTrigger.refresh(), 950);
+    // keep the opened heading in view just under the nav, but only nudge when it would slip out of sight
+    if (open && (headTop < 80 || headTop > innerHeight * .55)) {
+      window.scrollTo({ top: scrollY + headTop - 90, behavior: reduce ? 'auto' : 'smooth' });
+    }
+  }));
+  document.querySelectorAll('.toc-gallery figure, .pcard').forEach((f) => f.addEventListener('click', () => {
+    lbImg.src = f.dataset.full; lbImg.alt = f.dataset.cap; lbCap.textContent = f.dataset.cap; lb.classList.add('on');
+  }));
+
+  /* background decor motion */
+  if (!reduce) {
+    document.querySelectorAll('[data-parallax]').forEach((el) => gsap.fromTo(el, { yPercent: -+el.dataset.parallax }, { yPercent: +el.dataset.parallax, ease: 'none',
+      scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } }));
+    /* ambient light drifts slowly and follows the scroll, so it never cuts between blocks */
+    gsap.to('.ambient .a1', { x: '-8vw', y: '6vh', scale: 1.12, duration: 14, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.ambient .a2', { x: '10vw', y: '-8vh', scale: 1.1, duration: 17, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    const amb = gsap.timeline({ scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 2 } });
+    amb.to('.ambient .a1', { yPercent: 70, xPercent: -30, ease: 'none' }, 0)
+       .to('.ambient .a2', { yPercent: -60, xPercent: 40, ease: 'none' }, 0);
+    ScrollTrigger.create({ trigger: '#process', start: 'top 70%', end: 'bottom 30%',
+      onToggle: (st) => gsap.to('.ambient .a3', { opacity: st.isActive ? .1 : 0, duration: 1.6, ease: 'sine.inOut' }) });
+    const dw = document.querySelector('[data-drift="works"]');
+    if (desktop) gsap.to(dw, { xPercent: -25, ease: 'none', scrollTrigger: { trigger: '.works', start: 'top top', end: () => '+=' + (track.scrollWidth - innerWidth), scrub: 1, invalidateOnRefresh: true } });
+    else gsap.to(dw, { xPercent: -30, duration: 40, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+  }
+
+  /* floating sparks, like the embers in her art */
+  const cv = document.querySelector('.sparks'), ctx = cv.getContext('2d');
+  if (reduce) cv.remove();
+  else {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    let W, H, parts = [];
+    const size = () => { W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px'; };
+    const spawn = (y) => ({ x: Math.random() * W, y: y ?? H + 10, r: (Math.random() * 1.6 + .5) * dpr, vy: (Math.random() * .25 + .08) * dpr, sway: Math.random() * 6.28, a: Math.random() * .5 + .2, hue: Math.random() < .75 ? '230,90,70' : '255,190,120' });
+    size(); addEventListener('resize', size);
+    const N = innerWidth < 900 ? 18 : 36;
+    for (let i = 0; i < N; i++) parts.push(spawn(Math.random() * H));
+    let fade = 0;
+    const tick = () => {
+      fade += ((scrollY < innerHeight * .7 ? 0 : 1) - fade) * .04;
+      ctx.clearRect(0, 0, W, H);
+      if (fade > .01) for (const p of parts) {
+        p.y -= p.vy; p.sway += .01; p.x += Math.sin(p.sway) * .15 * dpr;
+        if (p.y < -10) Object.assign(p, spawn());
+        const tw = .6 + .4 * Math.sin(p.sway * 3);
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283);
+        ctx.fillStyle = `rgba(${p.hue},${p.a * tw * fade})`;
+        ctx.shadowBlur = 8 * dpr; ctx.shadowColor = `rgba(${p.hue},${.8 * fade})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+
+  if (reduce) { document.querySelectorAll('.steps li, .quote .w').forEach((el) => el.classList.add('on')); return; }
+  ScrollTrigger.defaults({ refreshPriority: 0 });
+
+  /* headings and service rows reveal */
+  gsap.utils.toArray('section:not(.contact) h2, section:not(.contact) .chapter').forEach((el) => gsap.from(el, { y: 50, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
+  gsap.from('.toc-head', { y: 50, opacity: 0, stagger: .1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.toc', start: 'top 82%' } });
+
+  /* process: pages flip */
+  const pages = gsap.utils.toArray('.page').reverse(); // top page first
+  const steps = document.querySelectorAll('.steps li');
+  steps[0].classList.add('on', 'cur');
+  const flip = gsap.timeline({ scrollTrigger: { trigger: '.process', start: 'top top', end: desktop ? '+=2000' : '+=1800', pin: true, scrub: .6, anticipatePin: 1,
+    onUpdate: (st) => { const i = Math.min(steps.length - 1, Math.round(st.progress * 4.4)); steps.forEach((s, k) => { s.classList.toggle('on', k <= i); s.classList.toggle('cur', k === i); }); } } });
+  pages.slice(0, -1).forEach((pg) => flip.to(pg, { rotateY: -165, x: -20, opacity: 0, ease: 'power2.inOut', duration: 1 }));
+  flip.to({}, { duration: .4 });
+
+  /* about */
+  gsap.to('.portrait img', { scale: 1, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.portrait .frame', { clipPath: 'inset(100% 0 0 0)', duration: 1.6, ease: 'expo.inOut', scrollTrigger: { trigger: '.about', start: 'top 70%' } });
+  gsap.from('.sig', { opacity: 0, x: -40, duration: 1.2, scrollTrigger: { trigger: '.about', start: 'top 50%' } });
+  const words = document.querySelectorAll('.quote .w');
+  ScrollTrigger.create({ trigger: '.quote', start: 'top 80%', end: 'bottom 45%', scrub: true,
+    onUpdate: (st) => words.forEach((w, i) => w.classList.toggle('on', i / words.length < st.progress)) });
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const o = { v: 0 }, end = +el.dataset.count;
+    gsap.to(o, { v: end, duration: 2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' },
+      onUpdate: () => (el.textContent = Math.round(o.v) + (o.v >= end ? el.dataset.suffix || '' : '')) });
+  });
+
+  /* letter: rises and unfolds */
+  /* letter rises, tilts up and fills in as you scroll toward it */
+  /* the letter lies on the table; the block pins and the letter rises to face the reader as you scroll */
+  gsap.set('.letter', { transformPerspective: 900, transformOrigin: '50% 100%', rotateX: 72, y: 80, scale: .93 });
+  gsap.set('.seal', { autoAlpha: 0, scale: 1.5, rotate: 30 });
+  const contactPin = ScrollTrigger.create({ trigger: '.contact', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    start: () => (document.querySelector('.contact').offsetHeight > innerHeight ? 'bottom bottom' : 'top top'), end: '+=650' });
+  const letterTl = gsap.timeline({ scrollTrigger: { trigger: '.contact', start: 'top 85%', end: () => contactPin.end - 80, scrub: 1, invalidateOnRefresh: true } });
+  letterTl
+    .to('.letter', { rotateX: 0, y: 0, scale: 1, ease: 'power1.out', duration: 1, force3D: true }, 0)
+    .to('.seal', { autoAlpha: 1, scale: 1, rotate: 0, ease: 'back.out(2)', duration: .2 }, .8);
+
+  /* magnetic seal */
+  const seal = document.querySelector('.seal');
+  if (fine) {
+    seal.addEventListener('pointermove', (e) => { const r = seal.getBoundingClientRect(); gsap.to(seal, { x: (e.clientX - r.left - r.width / 2) * .35, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4 }); });
+    seal.addEventListener('pointerleave', () => gsap.to(seal, { x: 0, y: 0, duration: .8, ease: 'elastic.out(1, .4)' }));
+  }
+
+  ScrollTrigger.sort();
+  addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>
