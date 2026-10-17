@@ -280,8 +280,8 @@
     display: grid; place-items: center;
   }
   .pcard.back .mono { width: 58%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(239,230,220,.55); display: grid; place-items: center; font: 400 34px/1 var(--script); color: var(--paper); box-shadow: 0 0 0 6px rgba(142,27,42,.9), 0 0 0 7px rgba(239,230,220,.35); }
-  .toc-item.open .pcard { opacity: 1; transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)); }
-  .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)) translateY(-34px); box-shadow: 0 40px 70px rgba(0,0,0,.6); transition-delay: 0s; z-index: 5; }
+  .toc-item.open .pcard { opacity: 1; transform: rotate(calc((var(--i) - 2) * 13deg)) translateX(calc((var(--i) - 2) * 50px)); }
+  .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 2) * 13deg)) translateX(calc((var(--i) - 2) * 50px)) translateY(-34px); box-shadow: 0 40px 70px rgba(0,0,0,.6); transition-delay: 0s; z-index: 5; }
 
   /* ===== PROCESS: stacked pages ===== */
   .proc-h { margin-bottom: 14px; }
@@ -381,10 +381,11 @@
     .toc-p { display: none; }
     .toc-content { grid-template-columns: 1fr; padding: 0 0 30px; gap: 22px; }
     .toc-content p { font-size: 15px; }
+    .toc-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .deck { height: 300px; }
-    .pcard { width: 118px; margin-left: -59px; bottom: 50px; }
-    .toc-item.open .pcard { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)); }
-    .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)) translateY(-20px); }
+    .pcard { width: 100px; margin-left: -50px; bottom: 50px; }
+    .toc-item.open .pcard { transform: rotate(calc((var(--i) - 2) * 8deg)) translateX(calc((var(--i) - 2) * 24px)); }
+    .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 2) * 8deg)) translateX(calc((var(--i) - 2) * 24px)) translateY(-20px); }
     /* process: pinned book, compact text */
     .process { min-height: 100svh; align-content: start; gap: 18px; padding-top: 84px; padding-bottom: 20px; }
     .proc-text { display: contents; }
@@ -482,6 +483,23 @@
           <div class="ph"><img src="/img/teni.jpg" alt="Cover for Wicked Shadows" style="object-position:50% 25%"></div>
           <figcaption><b>Wicked Shadows</b><small>Cover</small></figcaption>
         </figure>
+        <figure class="polaroid" style="--rot:-2deg" data-full="/img/krysy.jpg" data-cap="Rats on a Sinking Ship · riddlestory21 · full wrap">
+          <div class="ph"><img src="/img/krysy.jpg" alt="Cover for Rats on a Sinking Ship" style="object-position:50% 45%" loading="lazy"></div>
+          <figcaption><b>Rats on a Sinking Ship</b><small>riddlestory21 · full wrap</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:2.5deg" data-full="/img/hrupkost.jpg" data-cap="Fragility · Courtney L. Winn · Inspiria · cover and bonus postcard">
+          <div class="ph"><img src="/img/hrupkost.jpg" alt="Cover for Fragility with a bonus postcard" style="object-position:70% 40%" loading="lazy"></div>
+          <span class="tag">Inspiria</span>
+          <figcaption><b>Fragility</b><small>Courtney L. Winn · cover + postcard</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:-1.5deg" data-full="/img/mastera.jpg" data-cap="Masters of Lawlessness · Aisha de Anonapso · two volumes">
+          <div class="ph"><img src="/img/mastera.jpg" alt="Covers for both volumes of Masters of Lawlessness" style="object-position:72% 40%" loading="lazy"></div>
+          <figcaption><b>Masters of Lawlessness</b><small>Aisha de Anonapso · two volumes</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:3deg" data-full="/img/hronopsia.jpg" data-cap="Chronopsia · sashaskuhiz · Wingless Dragon">
+          <div class="ph"><img src="/img/hronopsia.jpg" alt="Cover for Chronopsia" style="object-position:68% 45%" loading="lazy"></div>
+          <figcaption><b>Chronopsia</b><small>sashaskuhiz · Wingless Dragon</small></figcaption>
+        </figure>
         <div class="polaroid end">
           <a href="https://t.me/LinelEm7" target="_blank" rel="noopener">Hundreds more<br>on Telegram<span>@LinelEm7 →</span></a>
         </div>
@@ -518,6 +536,9 @@
         <div class="toc-gallery">
           <figure style="--r:-1.5deg" data-full="/img/spread-thread.jpg" data-cap="Full-page illustration inside the book"><img src="/img/spread-thread.jpg" alt="Illustration on a book spread" loading="lazy" style="object-position:60% 50%"><figcaption>Inside the book</figcaption></figure>
           <figure style="--r:2deg" data-full="/img/corridor.jpg" data-cap="Character art"><img src="/img/corridor.jpg" alt="A couple in the blue light of a corridor" loading="lazy" style="object-position:55% 25%"><figcaption>Character art</figcaption></figure>
+          <figure style="--r:-2deg" data-full="/img/spread-autumn.jpg" data-cap="An illustrated spread inside the book"><img src="/img/spread-autumn.jpg" alt="A book open on an illustration" loading="lazy" style="object-position:62% 45%"><figcaption>Inside the book</figcaption></figure>
+          <figure style="--r:1.5deg" data-full="/img/spread-rain.jpg" data-cap="A full double-page illustration"><img src="/img/spread-rain.jpg" alt="Double-page illustration: rain by the pond" loading="lazy" style="object-position:62% 50%"><figcaption>Double-page spread</figcaption></figure>
+          <figure style="--r:-1deg" data-full="/img/roses.jpg" data-cap="Character art"><img src="/img/roses.jpg" alt="A kiss among roses" loading="lazy" style="object-position:50% 35%"><figcaption>Among the roses</figcaption></figure>
         </div>
       </div></div></div>
     </li>
@@ -531,6 +552,7 @@
           <figure class="pcard" style="--i:1" data-full="/img/cards.jpg" data-cap="Collectible card"><div class="face"><img src="/img/cards.jpg" alt="" loading="lazy" style="object-position:33% 45%"></div></figure>
           <figure class="pcard" style="--i:2" data-full="/img/cards-hd.jpg" data-cap="Double-sided cards for The Serpentarium"><div class="face"><img src="/img/cards-hd.jpg" alt="" loading="lazy" style="object-position:33% 50%"></div></figure>
           <figure class="pcard" style="--i:3" data-full="/img/hatter.jpg" data-cap="Playing card: ace of spades"><div class="face"><img src="/img/hatter.jpg" alt="" loading="lazy" style="object-position:62% 55%"></div></figure>
+          <figure class="pcard" style="--i:4" data-full="/img/cards-tpd.jpg" data-cap="Double-sided card: face and back"><div class="face"><img src="/img/cards-tpd.jpg" alt="" loading="lazy" style="object-position:30% 45%"></div></figure>
         </div>
       </div></div></div>
     </li>
@@ -542,6 +564,8 @@
         <div class="toc-gallery">
           <figure style="--r:-2deg" data-full="/img/acrylic.jpg" data-cap="Acrylic standee in a wooden box"><img src="/img/acrylic.jpg" alt="Acrylic standee" loading="lazy" style="object-position:55% 40%"><figcaption>Acrylic standee</figcaption></figure>
           <figure style="--r:1.5deg" data-full="/img/comic.jpg" data-cap="Comic postcard · a collab with Uyutny Merch"><img src="/img/comic.jpg" alt="Comic postcard" loading="lazy" style="object-position:33% 50%"><figcaption>Comic postcard</figcaption></figure>
+          <figure style="--r:2deg" data-full="/img/postcards-blue.jpg" data-cap="Postcards for a special edition"><img src="/img/postcards-blue.jpg" alt="Two blue postcards" loading="lazy" style="object-position:30% 50%"><figcaption>Postcards</figcaption></figure>
+          <figure style="--r:-1.5deg" data-full="/img/desire-set.jpg" data-cap="A card series: faces framed as polaroids"><img src="/img/desire-set.jpg" alt="A collectible card series" loading="lazy" style="object-position:50% 40%"><figcaption>Card series</figcaption></figure>
         </div>
       </div></div></div>
     </li>

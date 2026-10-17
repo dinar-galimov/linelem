@@ -280,8 +280,8 @@
     display: grid; place-items: center;
   }
   .pcard.back .mono { width: 58%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(239,230,220,.55); display: grid; place-items: center; font: 400 34px/1 var(--script); color: var(--paper); box-shadow: 0 0 0 6px rgba(142,27,42,.9), 0 0 0 7px rgba(239,230,220,.35); }
-  .toc-item.open .pcard { opacity: 1; transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)); }
-  .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 13deg)) translateX(calc((var(--i) - 1.5) * 50px)) translateY(-34px); box-shadow: 0 40px 70px rgba(0,0,0,.6); transition-delay: 0s; z-index: 5; }
+  .toc-item.open .pcard { opacity: 1; transform: rotate(calc((var(--i) - 2) * 13deg)) translateX(calc((var(--i) - 2) * 50px)); }
+  .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 2) * 13deg)) translateX(calc((var(--i) - 2) * 50px)) translateY(-34px); box-shadow: 0 40px 70px rgba(0,0,0,.6); transition-delay: 0s; z-index: 5; }
 
   /* ===== PROCESS: stacked pages ===== */
   .proc-h { margin-bottom: 14px; }
@@ -381,10 +381,11 @@
     .toc-p { display: none; }
     .toc-content { grid-template-columns: 1fr; padding: 0 0 30px; gap: 22px; }
     .toc-content p { font-size: 15px; }
+    .toc-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .deck { height: 300px; }
-    .pcard { width: 118px; margin-left: -59px; bottom: 50px; }
-    .toc-item.open .pcard { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)); }
-    .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 1.5) * 10deg)) translateX(calc((var(--i) - 1.5) * 34px)) translateY(-20px); }
+    .pcard { width: 100px; margin-left: -50px; bottom: 50px; }
+    .toc-item.open .pcard { transform: rotate(calc((var(--i) - 2) * 8deg)) translateX(calc((var(--i) - 2) * 24px)); }
+    .toc-item.open .pcard:hover { transform: rotate(calc((var(--i) - 2) * 8deg)) translateX(calc((var(--i) - 2) * 24px)) translateY(-20px); }
     /* process: pinned book, compact text */
     .process { min-height: 100svh; align-content: start; gap: 18px; padding-top: 84px; padding-bottom: 20px; }
     .proc-text { display: contents; }
@@ -482,6 +483,23 @@
           <div class="ph"><img src="/img/teni.jpg" alt="Обложка «Злые тени»" style="object-position:50% 25%"></div>
           <figcaption><b>Злые тени</b><small>Обложка</small></figcaption>
         </figure>
+        <figure class="polaroid" style="--rot:-2deg" data-full="/img/krysy.jpg" data-cap="«Крысы на тонущем корабле» · riddlestory21 · полный разворот">
+          <div class="ph"><img src="/img/krysy.jpg" alt="Обложка «Крысы на тонущем корабле»" style="object-position:50% 45%" loading="lazy"></div>
+          <figcaption><b>Крысы на тонущем корабле</b><small>riddlestory21 · полный разворот</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:2.5deg" data-full="/img/hrupkost.jpg" data-cap="«Хрупкость» · Кортни Л. Винн · Inspiria · обложка и открытка в подарок">
+          <div class="ph"><img src="/img/hrupkost.jpg" alt="Обложка «Хрупкость» и открытка" style="object-position:70% 40%" loading="lazy"></div>
+          <span class="tag">Inspiria</span>
+          <figcaption><b>Хрупкость</b><small>Кортни Л. Винн · обложка и открытка</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:-1.5deg" data-full="/img/mastera.jpg" data-cap="«Мастера беззакония» · Aisha de Anonapso · два тома">
+          <div class="ph"><img src="/img/mastera.jpg" alt="Обложки двух томов «Мастера беззакония»" style="object-position:72% 40%" loading="lazy"></div>
+          <figcaption><b>Мастера беззакония</b><small>Aisha de Anonapso · два тома</small></figcaption>
+        </figure>
+        <figure class="polaroid" style="--rot:3deg" data-full="/img/hronopsia.jpg" data-cap="«Хронопсия» · sashaskuhiz · Wingless Dragon">
+          <div class="ph"><img src="/img/hronopsia.jpg" alt="Обложка «Хронопсия»" style="object-position:68% 45%" loading="lazy"></div>
+          <figcaption><b>Хронопсия</b><small>sashaskuhiz · Wingless Dragon</small></figcaption>
+        </figure>
         <div class="polaroid end">
           <a href="https://t.me/LinelEm7" target="_blank" rel="noopener">Ещё сотни работ<br>в Telegram<span>@LinelEm7 →</span></a>
         </div>
@@ -518,6 +536,9 @@
         <div class="toc-gallery">
           <figure style="--r:-1.5deg" data-full="/img/spread-thread.jpg" data-cap="Полностраничная иллюстрация в книге"><img src="/img/spread-thread.jpg" alt="Иллюстрация на развороте книги" loading="lazy" style="object-position:60% 50%"><figcaption>Иллюстрация в книге</figcaption></figure>
           <figure style="--r:2deg" data-full="/img/corridor.jpg" data-cap="Арт по персонажам"><img src="/img/corridor.jpg" alt="Пара в синем свете коридора" loading="lazy" style="object-position:55% 25%"><figcaption>Арт по персонажам</figcaption></figure>
+          <figure style="--r:-2deg" data-full="/img/spread-autumn.jpg" data-cap="Разворот с иллюстрацией в книге"><img src="/img/spread-autumn.jpg" alt="Книга, раскрытая на иллюстрации" loading="lazy" style="object-position:62% 45%"><figcaption>Разворот в книге</figcaption></figure>
+          <figure style="--r:1.5deg" data-full="/img/spread-rain.jpg" data-cap="Иллюстрация на весь разворот"><img src="/img/spread-rain.jpg" alt="Иллюстрация на развороте: дождь у пруда" loading="lazy" style="object-position:62% 50%"><figcaption>На весь разворот</figcaption></figure>
+          <figure style="--r:-1deg" data-full="/img/roses.jpg" data-cap="Арт по персонажам"><img src="/img/roses.jpg" alt="Поцелуй в розах" loading="lazy" style="object-position:50% 35%"><figcaption>В розах</figcaption></figure>
         </div>
       </div></div></div>
     </li>
@@ -531,6 +552,7 @@
           <figure class="pcard" style="--i:1" data-full="/img/cards.jpg" data-cap="Коллекционная карта"><div class="face"><img src="/img/cards.jpg" alt="" loading="lazy" style="object-position:33% 45%"></div></figure>
           <figure class="pcard" style="--i:2" data-full="/img/cards-hd.jpg" data-cap="Двусторонние карты для The Serpentarium"><div class="face"><img src="/img/cards-hd.jpg" alt="" loading="lazy" style="object-position:33% 50%"></div></figure>
           <figure class="pcard" style="--i:3" data-full="/img/hatter.jpg" data-cap="Игральная карта: туз пик"><div class="face"><img src="/img/hatter.jpg" alt="" loading="lazy" style="object-position:62% 55%"></div></figure>
+          <figure class="pcard" style="--i:4" data-full="/img/cards-tpd.jpg" data-cap="Двусторонняя карта: лицо и рубашка"><div class="face"><img src="/img/cards-tpd.jpg" alt="" loading="lazy" style="object-position:30% 45%"></div></figure>
         </div>
       </div></div></div>
     </li>
@@ -542,6 +564,8 @@
         <div class="toc-gallery">
           <figure style="--r:-2deg" data-full="/img/acrylic.jpg" data-cap="Акриловая фигурка в деревянной коробке"><img src="/img/acrylic.jpg" alt="Акриловая фигурка" loading="lazy" style="object-position:55% 40%"><figcaption>Акриловая фигурка</figcaption></figure>
           <figure style="--r:1.5deg" data-full="/img/comic.jpg" data-cap="Открытка-комикс · коллаборация с «Уютным мерчем»"><img src="/img/comic.jpg" alt="Открытка-комикс" loading="lazy" style="object-position:33% 50%"><figcaption>Открытка-комикс</figcaption></figure>
+          <figure style="--r:2deg" data-full="/img/postcards-blue.jpg" data-cap="Открытки к особому изданию"><img src="/img/postcards-blue.jpg" alt="Две синие открытки" loading="lazy" style="object-position:30% 50%"><figcaption>Открытки</figcaption></figure>
+          <figure style="--r:-1.5deg" data-full="/img/desire-set.jpg" data-cap="Серия карточек: лица в рамках-полароидах"><img src="/img/desire-set.jpg" alt="Серия коллекционных карточек" loading="lazy" style="object-position:50% 40%"><figcaption>Серия карточек</figcaption></figure>
         </div>
       </div></div></div>
     </li>
