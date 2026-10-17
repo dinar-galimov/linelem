@@ -72,7 +72,7 @@
     animation: grain 1s steps(6) infinite;
   }
   /* on phones the jittering grain reads as fast-moving noise over the wine light: keep it still and quieter */
-  @media (max-width: 900px), (hover: none) { .grain { animation: none; opacity: .05; inset: 0; } }
+  @media (max-width: 900px), (hover: none) { .grain { animation: none; opacity: .05; inset: 0; } .paper { display: none; } }
   @keyframes grain {
     0%,100% { transform: translate(0,0) } 20% { transform: translate(-3%,2%) }
     40% { transform: translate(2%,-3%) } 60% { transform: translate(-2%,-1%) } 80% { transform: translate(3%,3%) }
@@ -137,6 +137,7 @@
   .hero-art { position: absolute; inset: 0; }
   .hero-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 25%; }
   .hero-art .dim { filter: grayscale(1) brightness(.22) contrast(1.2); }
+  .hero-art { will-change: transform; }
   .hero-art .lit {
     --x: 70%; --y: 40%; --r: 0px;
     -webkit-mask: radial-gradient(circle var(--r) at var(--x) var(--y), #000 0%, #000 45%, transparent 100%);
@@ -206,10 +207,10 @@
     -webkit-text-stroke: 1px rgba(239, 230, 220, .1);
   }
   .ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-  .ambient i { position: absolute; border-radius: 50%; filter: blur(110px); will-change: transform, opacity; }
-  .ambient .a1 { width: 42vmax; height: 42vmax; background: var(--wine); opacity: .2; right: -16vmax; top: -14vmax; }
-  .ambient .a2 { width: 34vmax; height: 34vmax; background: #6a1220; opacity: .16; left: -16vmax; bottom: -14vmax; }
-  .ambient .a3 { width: 46vmax; height: 46vmax; background: var(--cyan); opacity: 0; right: -14vmax; top: 30vh; }
+  .ambient i { position: absolute; border-radius: 50%; will-change: transform; }
+  .ambient .a1 { width: 70vmax; height: 70vmax; background: radial-gradient(closest-side, var(--wine), transparent); opacity: .2; right: -16vmax; top: -14vmax; }
+  .ambient .a2 { width: 58vmax; height: 58vmax; background: radial-gradient(closest-side, #6a1220, transparent); opacity: .16; left: -16vmax; bottom: -14vmax; }
+  .ambient .a3 { width: 72vmax; height: 72vmax; background: radial-gradient(closest-side, var(--cyan), transparent); opacity: 0; right: -14vmax; top: 30vh; }
   /* sits in the empty space to the right of the heading and fades out before the list */
   .deco-craft { right: clamp(16px, 5vw, 80px); top: clamp(-20px, 1vw, 20px); font-size: clamp(110px, 15vw, 240px); padding: .35em .15em .1em;
     -webkit-mask: linear-gradient(#000 55%, transparent 92%); mask: linear-gradient(#000 62%, transparent 94%); }
@@ -840,13 +841,13 @@
   } else {
     // short signature, then the curtain lifts while the title is already rising
     intro
-      .to('.loader text', { strokeDashoffset: 0, duration: .9, ease: 'power2.inOut' })
-      .to('.loader text', { fill: '#efe6dc', duration: .3 }, '-=.25')
-      .to('.loader', { clipPath: 'inset(0 0 100% 0)', duration: .7, ease: 'expo.inOut', onStart: unlock }, '+=.05')
+      .to('.loader text', { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' })
+      .to('.loader text', { fill: '#efe6dc', duration: .5 }, '-=.4')
+      .to('.loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut', onStart: unlock }, '+=.2')
       .set('.loader', { display: 'none' })
-      .from('.hero-art img', { scale: 1.2, duration: 1.8, ease: 'expo.out' }, '-=.6')
-      .from('.hero h1 .ch', { yPercent: 110, rotate: 8, duration: .9, stagger: .018, ease: 'expo.out' }, '-=1.65')
-      .from('.hero .chapter, .hero p, .hint', { opacity: 0, y: 20, duration: .7, stagger: .08 }, '-=1.1')
+      .from('.hero-art', { scale: 1.25, duration: 2.2, ease: 'expo.out', force3D: true }, '-=.9')
+      .from('.hero h1 .ch', { yPercent: 110, rotate: 8, duration: 1.1, stagger: .025, ease: 'expo.out', force3D: true }, '-=1.8')
+      .from('.hero .chapter, .hero p, .hint', { opacity: 0, y: 20, duration: .9, stagger: .1 }, '-=.9')
       .to(lit, { '--r': fine ? '260px' : '420px', duration: 1.2, ease: 'expo.out' }, '-=1.2');
   }
   gsap.set(lit, { '--r': '0px' });
@@ -864,7 +865,7 @@
     setX(((e.clientX - r.left) / r.width) * 100);
     setY(((e.clientY - r.top) / r.height) * 100);
   });
-  if (!fine && !reduce) gsap.to(spot, { x: 38, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut', onUpdate: paint });
+
   gsap.to('.hero-art img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
   gsap.to('.hero-content', { yPercent: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
 
