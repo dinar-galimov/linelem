@@ -308,7 +308,7 @@
   .glitter { min-height: 100svh; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 6vw, 100px); align-items: center; }
   .gl-text p { color: var(--muted); max-width: 26em; margin-top: 20px; }
   .gl-stage { perspective: 1400px; justify-self: center; width: min(520px, 100%, calc(80svh * .72)); }
-  .gl-card { position: relative; aspect-ratio: 1008/1400; border-radius: 10px; overflow: hidden; transform-style: preserve-3d; will-change: transform;
+  .gl-card { position: relative; aspect-ratio: 1008/1400; border-radius: 10px; overflow: hidden; will-change: transform;
     box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(239,230,220,.08); }
   .gl-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .gl-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -317,6 +317,8 @@
     background-size: 250% 250%; background-position: var(--sx, 0%) var(--sy, 50%); }
   .gl-glare { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light;
     background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255,255,255,.55), transparent 45%); opacity: var(--glare, .4); }
+  /* phones: blend modes over a canvas that redraws every frame force a full recomposite on iOS */
+  .gl-card.lite .gl-sheen, .gl-card.lite .gl-glare { mix-blend-mode: normal; }
   @media (max-width: 900px) {
     .glitter { grid-template-columns: 1fr; align-content: center; gap: 28px; }
     .gl-stage { width: 86%; }
@@ -752,6 +754,7 @@
       cv = card.querySelector('canvas'), ctx = cv.getContext('2d'), sheen = card.querySelector('.gl-sheen'), glare = card.querySelector('.gl-glare');
     // phones: fewer sparkles, 1x canvas, no additive blending, sheen updated every other frame
     const lite = innerWidth < 900 || matchMedia('(hover: none)').matches;
+    card.classList.toggle('lite', lite);
     let pts = [], W = 0, H = 0, dpr = lite ? 1 : Math.min(devicePixelRatio || 1, 1.5), visible = false, boost = 0, px = 0, py = 0, raf, frame = 0;
     const sample = () => {
       const s = 260, k = img.naturalHeight / img.naturalWidth, oc = document.createElement('canvas');
@@ -797,13 +800,13 @@
       const t = ms / 1000;
       if (!reduce && (!lite || frame++ % 2 === 0)) {
         // idle sway + pointer, both stronger as the scroll boost grows
-        const amp = 5 + boost * 4, ry = Math.sin(t * .55) * amp + Math.sin(t * 1.3) * 1.2 + px * (4 + boost * 6), rx = Math.cos(t * .43) * amp * .6 - py * (3 + boost * 5);
+        const amp = 10 + boost * 6, ry = Math.sin(t * .8) * amp + Math.sin(t * 1.9) * 2 + px * (8 + boost * 8), rx = Math.cos(t * .62) * amp * .7 - py * (6 + boost * 6);
         card.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg) scale(${1 + boost * .03 + Math.sin(t * .6) * .008})`;
         const sx = 50 + Math.sin(t * .5) * 48 + ry * 3, sy = 50 + Math.cos(t * .4) * 35 - rx * 3;
         sheen.style.setProperty('--sx', sx + '%'); sheen.style.setProperty('--sy', sy + '%');
-        sheen.style.setProperty('--sheen', (.07 + boost * .08).toFixed(3));
+        sheen.style.setProperty('--sheen', ((.07 + boost * .08) * (lite ? .45 : 1)).toFixed(3));
         glare.style.setProperty('--gx', (50 + ry * 4) + '%'); glare.style.setProperty('--gy', (35 - rx * 4) + '%');
-        glare.style.setProperty('--glare', (.3 + boost * .25).toFixed(3));
+        glare.style.setProperty('--glare', ((.3 + boost * .25) * (lite ? .3 : 1)).toFixed(3));
       }
       draw(reduce ? t * .3 : t);
       if (visible) raf = requestAnimationFrame(loop);
