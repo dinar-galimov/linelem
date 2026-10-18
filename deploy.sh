@@ -1,6 +1,6 @@
 #!/bin/sh
 # Publishes both language versions to GitHub Pages:
-#   ru/index.html -> dinar-galimov/linelem    (gh-pages) -> linelem.art
+#   ru/index.html -> dinar-galimov/linelem    (gh-pages) -> linelem.ru
 #   en/index.html -> dinar-galimov/linelem-en (gh-pages) -> linelem.com
 set -e
 cd "$(dirname "$0")"
@@ -29,8 +29,8 @@ publish() { # $1 = lang folder, $2 = domain, $3 = repo, $4 = preview image
 }
 
 case "${1:-all}" in
-  ru)  publish ru linelem.art dinar-galimov/linelem og.jpg ;;
+  ru)  publish ru linelem.ru dinar-galimov/linelem og.jpg ;;
   en)  publish en linelem.com dinar-galimov/linelem-en og-en.jpg ;;
-  all) publish ru linelem.art dinar-galimov/linelem og.jpg
+  all) publish ru linelem.ru dinar-galimov/linelem og.jpg
        publish en linelem.com dinar-galimov/linelem-en og-en.jpg ;;
 esac

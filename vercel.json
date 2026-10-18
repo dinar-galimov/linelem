@@ -5,8 +5,8 @@
     { "source": "/", "destination": "/ru" }
   ],
   "redirects": [
-    { "source": "/en/:path*", "has": [{ "type": "host", "value": "linelem.art" }], "destination": "https://linelem.com/", "permanent": true },
-    { "source": "/ru/:path*", "has": [{ "type": "host", "value": "linelem.com" }], "destination": "https://linelem.art/", "permanent": true }
+    { "source": "/en/:path*", "has": [{ "type": "host", "value": "linelem.ru" }], "destination": "https://linelem.com/", "permanent": true },
+    { "source": "/ru/:path*", "has": [{ "type": "host", "value": "linelem.com" }], "destination": "https://linelem.ru/", "permanent": true }
   ],
   "headers": [
     { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] }
