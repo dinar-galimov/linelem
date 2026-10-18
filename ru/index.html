@@ -57,14 +57,6 @@
   a { color: inherit; text-decoration: none; }
   ::selection { background: var(--red); color: var(--paper); }
 
-  /* paper: fibres + soft mottling, static, under the film grain */
-  .paper {
-    position: fixed; inset: 0; z-index: 89; pointer-events: none; opacity: .1;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .9 0 0 0 0 .85 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='3' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .8 0 0 0 0 .75 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
-  }
-
   /* film grain, animated */
   .grain {
     position: fixed; inset: -10%; z-index: 90; pointer-events: none; opacity: .11;
@@ -72,7 +64,7 @@
     animation: grain 1s steps(6) infinite;
   }
   /* on phones the jittering grain reads as fast-moving noise over the wine light: keep it still and quieter */
-  @media (max-width: 900px), (hover: none) { .grain { animation: none; opacity: .05; inset: 0; } .paper { display: none; } }
+  @media (max-width: 900px), (hover: none) { .grain { animation: none; opacity: .05; inset: 0; } }
   @keyframes grain {
     0%,100% { transform: translate(0,0) } 20% { transform: translate(-3%,2%) }
     40% { transform: translate(2%,-3%) } 60% { transform: translate(-2%,-1%) } 80% { transform: translate(3%,3%) }
@@ -297,10 +289,13 @@
     background: var(--paper-2);
   }
   .page img { width: 100%; height: 100%; object-fit: cover; }
-  .page .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 50px 22px 20px; background: linear-gradient(transparent, rgba(17,10,12,.9)); font: italic 400 22px var(--serif); }
+  .page .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 70px 22px 18px; background: linear-gradient(transparent, rgba(17,10,12,.75) 45%, rgba(17,10,12,.96)); font: italic 400 27px/1.1 var(--serif); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.8), 0 0 18px rgba(0,0,0,.6); }
   .steps { list-style: none; }
   .steps li { padding: 16px 0; border-top: 1px solid var(--line); opacity: .28; transition: opacity .5s; display: grid; grid-template-columns: 56px 1fr; }
   .steps li.on { opacity: 1; }
+  .steps li { cursor: pointer; }
+  .steps li:hover { opacity: .7; }
+  .steps li.on:hover { opacity: 1; }
   .steps li::before { content: attr(data-n); font: italic 400 28px/1 var(--serif); color: var(--red); }
   .steps b { display: block; font: 500 25px/1.15 var(--serif); }
   .steps span { color: var(--muted); font-size: 15px; }
@@ -414,7 +409,6 @@
 <body class="loading">
 
 <div class="ambient" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-<div class="paper" aria-hidden="true"></div>
 <div class="grain"></div>
 <canvas class="sparks" aria-hidden="true"></canvas>
 <div class="cursor"></div>
@@ -442,7 +436,7 @@
   <div class="hero-content">
     <div class="chapter">Глава I · Иллюстратор</div>
     <h1><span class="line">Рисую</span><span class="line">истории,</span><span class="line">в которые <em>влюбляются</em></span></h1>
-    <p>Иллюстрации для книг и не только: обложки, развороты, карты, арты по персонажам и мерч. От первого эскиза до файлов в типографию.</p>
+    <p>Иллюстрации для книг и не только: обложки, развороты, форзацы, арты по персонажам и мерч. От первого эскиза до файлов в типографию.</p>
   </div>
   <div class="hint">Листайте</div>
 </header>
@@ -482,21 +476,23 @@
           <div class="ph"><img loading="lazy" decoding="async" src="/img/obet.jpg" alt="Авторский переплёт «Непреложный обет»"></div>
           <figcaption><b>Непреложный обет</b><small>Авторский переплёт · красный срез</small></figcaption>
         </figure>
-        <figure class="polaroid" style="--rot:-2.5deg" data-full="/img/teni.jpg" data-cap="«Злые тени» · обложка">
+        <figure class="polaroid" style="--rot:-2.5deg" data-full="/img/teni.jpg" data-cap="«Злые тени» · Bavil · обложка">
           <div class="ph"><img loading="lazy" decoding="async" src="/img/teni.jpg" alt="Обложка «Злые тени»" style="object-position:50% 25%"></div>
-          <figcaption><b>Злые тени</b><small>Обложка</small></figcaption>
+          <figcaption><b>Злые тени</b><small>Bavil · обложка</small></figcaption>
         </figure>
-        <figure class="polaroid" style="--rot:-2deg" data-full="/img/krysy.jpg" data-cap="«Крысы на тонущем корабле» · riddlestory21 · полный разворот">
+        <figure class="polaroid" style="--rot:-2deg" data-full="/img/krysy.jpg" data-cap="«Крысы на тонущем корабле» · riddlestory21 · Serpentarium · полный разворот">
           <div class="ph"><img src="/img/krysy.jpg" alt="Обложка «Крысы на тонущем корабле»" style="object-position:50% 45%" loading="lazy"></div>
+          <span class="tag">Serpentarium</span>
           <figcaption><b>Крысы на тонущем корабле</b><small>riddlestory21 · полный разворот</small></figcaption>
         </figure>
-        <figure class="polaroid" style="--rot:2.5deg" data-full="/img/hrupkost.jpg" data-cap="«Хрупкость» · Кортни Л. Винн · Inspiria · обложка и открытка в подарок">
+        <figure class="polaroid" style="--rot:2.5deg" data-full="/img/hrupkost.jpg" data-cap="«Хрупкость» · Кортни Л. Винн · Inspiria">
           <div class="ph"><img src="/img/hrupkost.jpg" alt="Обложка «Хрупкость» и открытка" style="object-position:70% 40%" loading="lazy"></div>
           <span class="tag">Inspiria</span>
           <figcaption><b>Хрупкость</b><small>Кортни Л. Винн · обложка и открытка</small></figcaption>
         </figure>
-        <figure class="polaroid" style="--rot:-1.5deg" data-full="/img/mastera.jpg" data-cap="«Мастера беззакония» · Aisha de Anonapso · два тома">
+        <figure class="polaroid" style="--rot:-1.5deg" data-full="/img/mastera.jpg" data-cap="«Мастера беззакония» · Aisha de Anonapso · Serpentarium · два тома">
           <div class="ph"><img src="/img/mastera.jpg" alt="Обложки двух томов «Мастера беззакония»" style="object-position:72% 40%" loading="lazy"></div>
+          <span class="tag">Serpentarium</span>
           <figcaption><b>Мастера беззакония</b><small>Aisha de Anonapso · два тома</small></figcaption>
         </figure>
         <figure class="polaroid" style="--rot:3deg" data-full="/img/hronopsia.jpg" data-cap="«Хронопсия» · sashaskuhiz · Wingless Dragon">
@@ -551,11 +547,11 @@
         <div><p>Игральные и коллекционные карты, колоды таро и оракулы: лица и рубашка в одном стиле, с персонажами вашей истории.</p>
           <ul class="toc-tags"><li>игральные карты</li><li>таро</li><li>оракулы</li><li>рубашка</li></ul></div>
         <div class="deck">
-          <figure class="pcard back" style="--i:0" data-full="/img/hatter.jpg" data-cap="Рубашка и лица карт в одном стиле"><div class="face"><span class="mono">LE</span></div></figure>
-          <figure class="pcard" style="--i:1" data-full="/img/cards.jpg" data-cap="Коллекционная карта"><div class="face"><img src="/img/cards.jpg" alt="" loading="lazy" style="object-position:33% 45%"></div></figure>
-          <figure class="pcard" style="--i:2" data-full="/img/cards-hd.jpg" data-cap="Двусторонние карты для The Serpentarium"><div class="face"><img src="/img/cards-hd.jpg" alt="" loading="lazy" style="object-position:33% 50%"></div></figure>
-          <figure class="pcard" style="--i:3" data-full="/img/hatter.jpg" data-cap="Игральная карта: туз пик"><div class="face"><img src="/img/hatter.jpg" alt="" loading="lazy" style="object-position:62% 55%"></div></figure>
-          <figure class="pcard" style="--i:4" data-full="/img/cards-tpd.jpg" data-cap="Двусторонняя карта: лицо и рубашка"><div class="face"><img src="/img/cards-tpd.jpg" alt="" loading="lazy" style="object-position:30% 45%"></div></figure>
+          <figure class="pcard back" style="--i:0" data-full="/img/hatter.jpg" data-cap="Коллекционная карточка"><div class="face"><span class="mono">LE</span></div></figure>
+          <figure class="pcard" style="--i:1" data-full="/img/cards.jpg" data-cap="Коллекционная карточка"><div class="face"><img src="/img/cards.jpg" alt="" loading="lazy" style="object-position:33% 45%"></div></figure>
+          <figure class="pcard" style="--i:2" data-full="/img/cards-hd.jpg" data-cap="Коллекционная карточка"><div class="face"><img src="/img/cards-hd.jpg" alt="" loading="lazy" style="object-position:33% 50%"></div></figure>
+          <figure class="pcard" style="--i:3" data-full="/img/hatter.jpg" data-cap="Коллекционная карточка"><div class="face"><img src="/img/hatter.jpg" alt="" loading="lazy" style="object-position:62% 55%"></div></figure>
+          <figure class="pcard" style="--i:4" data-full="/img/cards-tpd.jpg" data-cap="Коллекционная карточка"><div class="face"><img src="/img/cards-tpd.jpg" alt="" loading="lazy" style="object-position:30% 45%"></div></figure>
         </div>
       </div></div></div>
     </li>
@@ -568,7 +564,7 @@
           <figure style="--r:-2deg" data-full="/img/acrylic.jpg" data-cap="Акриловая фигурка в деревянной коробке"><img src="/img/acrylic.jpg" alt="Акриловая фигурка" loading="lazy" style="object-position:55% 40%"><figcaption>Акриловая фигурка</figcaption></figure>
           <figure style="--r:1.5deg" data-full="/img/comic.jpg" data-cap="Открытка-комикс · коллаборация с «Уютным мерчем»"><img src="/img/comic.jpg" alt="Открытка-комикс" loading="lazy" style="object-position:33% 50%"><figcaption>Открытка-комикс</figcaption></figure>
           <figure style="--r:2deg" data-full="/img/postcards-blue.jpg" data-cap="Открытки к особому изданию"><img src="/img/postcards-blue.jpg" alt="Две синие открытки" loading="lazy" style="object-position:30% 50%"><figcaption>Открытки</figcaption></figure>
-          <figure style="--r:-1.5deg" data-full="/img/desire-set.jpg" data-cap="Серия карточек: лица в рамках-полароидах"><img src="/img/desire-set.jpg" alt="Серия коллекционных карточек" loading="lazy" style="object-position:50% 40%"><figcaption>Серия карточек</figcaption></figure>
+          <figure style="--r:-1.5deg" data-full="/img/desire-set.jpg" data-cap="Коллекционные карточки"><img src="/img/desire-set.jpg" alt="Серия коллекционных карточек" loading="lazy" style="object-position:50% 40%"><figcaption>Серия карточек</figcaption></figure>
         </div>
       </div></div></div>
     </li>
@@ -590,13 +586,13 @@
   <div class="proc-text">
     <div class="chapter">Глава IV · Процесс</div>
     <h2 class="proc-h">Как рождается <em>обложка</em></h2>
-    <p class="proc-note">На примере «Мой милый Эрроу», Саффрон А. Кент, Молодёжка Эксмо</p>
+    <p class="proc-note">Иллюстрации этапов — из обложки «Мой милый Эрроу», Саффрон А. Кент, Молодёжка Эксмо</p>
     <ol class="steps">
-      <li data-n="I"><div><b>Выбор композиции</b><span>Несколько набросков. Здесь объединили половинки двух: Салем, пишущую письмо, и взгляд героев.</span></div></li>
-      <li data-n="II"><div><b>Черновой вариант</b><span>Компоновка всего разворота: письмо на заднике, фигуры героев, место под текст.</span></div></li>
-      <li data-n="III"><div><b>Покрас</b><span>Подбираем палитру и свет, прежде чем уходить в детали.</span></div></li>
-      <li data-n="IV"><div><b>Детализация</b><span>Внезапная идея с красными лентами и контрастом, как на другом арте Linel Em.</span></div></li>
-      <li data-n="V"><div><b>Сборка</b><span>Цвета ярче, надписи, корешок, задник и файлы для типографии.</span></div></li>
+      <li data-n="I"><div><b>Выбор композиции</b><span>Обсуждаем идею, расположение персонажей, ракурсы и детали. Подбираем референсы и определяемся с настроением работы.</span></div></li>
+      <li data-n="II"><div><b>Черновой вариант</b><span>Создаю эскиз, прорабатываю позы, анатомию и композицию. На этом этапе можно скорректировать детали, прежде чем переходить к цвету.</span></div></li>
+      <li data-n="III"><div><b>Покрас</b><span>Добавляю цвет, свет и тени, работаю с палитрой и атмосферой, чтобы иллюстрация обрела объём и настроение.</span></div></li>
+      <li data-n="IV"><div><b>Детализация</b><span>Прорисовываю мелкие элементы: украшения, аксессуары, узоры и фактуры — детали, которые делают иллюстрацию особенной.</span></div></li>
+      <li data-n="V"><div><b>Сборка</b><span>Финально корректирую цвета, оформляю надписи, корешок и задник. Готовлю файлы для печати с учётом требований типографии.</span></div></li>
     </ol>
   </div>
 </section>
@@ -606,7 +602,7 @@
   <div class="gl-text">
     <div class="chapter">Интерлюдия · Глиттер</div>
     <h2>Снег, который <em>сверкает</em></h2>
-    <p>Иллюстрации под спецпокрытия: глиттер, голографию, фольгу. Заранее продумываю, где ляжет блеск, чтобы на печати картинка оживала в свете.</p>
+    <p>Иллюстрации под спецпокрытия: сахарную ламинацию, голографию, фольгу, лак. Заранее продумываю, где ляжет блеск, чтобы на печати картинка оживала в свете.</p>
   </div>
   <div class="gl-stage">
     <div class="gl-card">
@@ -631,9 +627,9 @@
     <div class="chapter">Глава V · Автор</div>
     <p class="quote" data-words>Я рисую напряжение между героями: взгляд, жест и свет, который рассказывает историю раньше аннотации.</p>
     <div class="facts">
-      <div><b data-count="2027">0</b><span>до этого года расписана очередь</span></div>
+      <div><b data-count="2027">0</b><span>открыта запись на этот год</span></div>
       <div><b data-count="290" data-suffix="+">0</b><span>работ в Telegram-портфолио</span></div>
-      <div><b>Эксмо</b><span>и независимые авторы</span></div>
+      <div><b>Эксмо</b><span>АСТ, Азбука и самиздат</span></div>
     </div>
   </div>
 </section>
@@ -650,7 +646,6 @@
     <div class="sign">Linel Em</div>
     <div class="alt">
       <a href="https://t.me/LinelEm7" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://www.instagram.com/linel.em/" target="_blank" rel="noopener">Instagram</a>
     </div>
     <a class="seal" href="https://t.me/LinelEm7" target="_blank" rel="noopener" data-cursor="Написать"><span><b>Linel</b>написать</span></a>
   </div>
@@ -1025,6 +1020,8 @@
     onUpdate: (st) => { const i = Math.min(steps.length - 1, Math.round(st.progress * 4.4)); steps.forEach((s, k) => { s.classList.toggle('on', k <= i); s.classList.toggle('cur', k === i); }); } } });
   pages.slice(0, -1).forEach((pg) => flip.to(pg, { rotateY: -165, x: -20, opacity: 0, ease: 'power2.inOut', duration: 1 }));
   flip.to({}, { duration: .4 });
+  /* click a step: scroll to the point where it becomes current */
+  steps.forEach((s, k) => s.addEventListener('click', () => { const st = flip.scrollTrigger; window.scrollTo({ top: st.start + (st.end - st.start) * (k / 4.4) + 2, behavior: 'smooth' }); }));
 
   /* about */
   gsap.to('.portrait img', { scale: 1, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
