@@ -771,7 +771,8 @@
         pts.push({ x: b[0], y: b[1], ph: Math.random() * 6.28, sp: .6 + Math.random() * 2.2, sz: .3 + Math.random() * .7, warm: Math.random() < .25 });
       }
     };
-    const size = () => { const r = card.getBoundingClientRect(); W = cv.width = r.width * dpr; H = cv.height = r.height * dpr; };
+    // only touch the canvas when the card really changed size: assigning width/height clears it, and iOS fires resize as the toolbar hides
+    const size = () => { const r = card.getBoundingClientRect(), w = Math.round(r.width * dpr), h = Math.round(r.height * dpr); if (w === W && h === H) return; W = cv.width = w; H = cv.height = h; };
     // one sprite per colour: soft glow + four-point flare, drawn once and stamped with drawImage
     const sprite = (rgb) => {
       const S = 64, c = document.createElement('canvas'); c.width = c.height = S; const g = c.getContext('2d'), m = S / 2;
@@ -995,9 +996,10 @@
   else {
     const dpr = 1;
     let W, H, parts = [], idle = false;
-    const size = () => { W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px'; };
+    const size = () => { W = cv.width = innerWidth * dpr; H = cv.height = (innerHeight + 160) * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = (innerHeight + 160) + 'px'; };
     const spawn = (y) => ({ x: Math.random() * W, y: y ?? H + 10, r: (Math.random() * 1.6 + .5) * dpr, vy: (Math.random() * .25 + .08) * dpr, sway: Math.random() * 6.28, a: Math.random() * .5 + .2, hue: Math.random() < .75 ? '230,90,70' : '255,190,120' });
-    size(); addEventListener('resize', size);
+    // iOS resizes the viewport as the toolbar collapses while scrolling: the canvas keeps spare height and is only rebuilt on a width change or when the window outgrows it
+    let lastW = 0; size(); lastW = innerWidth; addEventListener('resize', () => { if (innerWidth !== lastW || innerHeight > H / dpr) { lastW = innerWidth; size(); } });
     const N = innerWidth < 900 ? 18 : 36;
     for (let i = 0; i < N; i++) parts.push(spawn(Math.random() * H));
     let fade = 0;
@@ -1023,6 +1025,7 @@
 
   if (reduce) { document.querySelectorAll('.steps li, .quote .w').forEach((el) => el.classList.add('on')); return; }
   ScrollTrigger.defaults({ refreshPriority: 0 });
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   /* headings and service rows reveal */
   gsap.utils.toArray('section:not(.contact) h2, section:not(.contact) .chapter').forEach((el) => gsap.from(el, { y: 50, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
