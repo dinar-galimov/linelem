@@ -340,6 +340,84 @@
   .facts b { display: block; font: 500 clamp(40px, 4.5vw, 60px)/1 var(--serif); color: var(--paper); }
   .facts span { font-size: 13px; color: var(--muted); }
 
+  /* ===== REVIEWS ===== */
+  .reviews h2 { margin: 18px 0 clamp(40px, 6vw, 80px); }
+  .rv-list { display: grid; gap: clamp(40px, 6vw, 80px); }
+  .rv { display: grid; grid-template-columns: minmax(180px, 3fr) 9fr; gap: clamp(24px, 5vw, 80px); align-items: start; }
+  .rv-side { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .rv-cover { width: 70%; aspect-ratio: 5/7; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,.55); transform: rotate(-3deg); }
+  .rv-ava { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg); margin-top: -46px; margin-left: 46%; position: relative; box-shadow: 0 0 0 1px var(--line); }
+  .rv-name { font: 400 40px/1 var(--script); color: var(--red); }
+  .rv-role { font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+  .rv-body { position: relative; border-left: 1px solid var(--line); padding-left: clamp(20px, 4vw, 56px); }
+  .rv-body::before { content: "\201C"; position: absolute; left: clamp(4px, 2vw, 30px); top: -.35em; font: 400 140px/1 var(--serif); color: var(--wine); opacity: .6; pointer-events: none; }
+  .rv-lead { font: italic 400 clamp(24px, 2.6vw, 36px)/1.3 var(--serif); color: var(--paper); position: relative; }
+  .rv-text { margin-top: 24px; font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 62ch; }
+  .rv-text p + p { margin-top: 14px; }
+  .rv-book { display: inline-block; margin-top: 22px; font-size: 13px; color: var(--paper); border-bottom: 1px solid var(--wine); padding-bottom: 2px; }
+  @media (max-width: 700px) {
+    .rv { grid-template-columns: 1fr; }
+    .rv-side { flex-direction: row; text-align: left; align-items: center; }
+    .rv-cover { width: 76px; transform: rotate(-3deg); }
+    .rv-ava { width: 56px; height: 56px; margin: 0 0 0 -30px; align-self: flex-end; }
+    .rv-side > div { display: grid; gap: 4px; }
+    .rv-name { font-size: 32px; }
+    .rv-body { border-left: 0; padding-left: 0; }
+    .rv-body::before { left: -6px; top: -.55em; font-size: 110px; }
+  }
+
+  .rv-solo .rv-ava { width: 160px; height: 160px; margin: 0; border: 0; box-shadow: 0 0 0 1px var(--line), 0 20px 50px rgba(0,0,0,.55); }
+  @media (max-width: 700px) { .rv-solo .rv-ava { width: 76px; height: 76px; } }
+  /* reviews as a stack of letters */
+  .rv-stack { max-width: 1100px; }
+  .reviews .rv-list { display: grid; gap: 0; padding: 0 clamp(64px, 7vw, 96px) 30px 0; }
+  .reviews .rv { --k: 0; grid-area: 1 / 1; background: #1a1013; border: 1px solid var(--line); border-radius: 6px; padding: clamp(28px, 4vw, 60px); box-shadow: 0 30px 60px rgba(0,0,0,.45);
+    transform: translate(calc(var(--k) * clamp(28px, 4vw, 46px)), calc(var(--k) * 10px)) rotate(calc(var(--k) * 1deg)); z-index: calc(10 - var(--k));
+    transition: transform .7s var(--ease), opacity .5s, filter .5s; transform-origin: 30% 100%; cursor: pointer; }
+  .reviews .rv:not(.on) { filter: brightness(.7); }
+  .reviews .rv:not(.on) > :not(.rv-ava) { opacity: 0; transition: opacity .3s; }
+  @media (max-width: 700px) { .reviews .rv-list { padding-right: 34px; } }
+  .reviews .rv.on { cursor: default; }
+  .reviews .rv { align-content: start; }
+  @media (max-width: 700px) { .reviews .rv-side { align-items: center; } }
+  .reviews .rv.on > * { transition: opacity .5s .25s; }
+  .reviews .rv.far { opacity: 0; pointer-events: none; }
+  .reviews .rv.out { transform: translate(-30%, 40px) rotate(-10deg); opacity: 0; z-index: 20; transition: transform .55s cubic-bezier(.5,0,.75,0), opacity .55s; }
+  .reviews .rv:not(.on):hover { filter: brightness(.85); }
+  .rv-next { display: flex; align-items: center; gap: 12px; margin: 26px 0 0 auto; background: none; border: 0; color: var(--paper); font: inherit; cursor: pointer; padding: 8px 0; }
+  .rv-next-label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .rv-next img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
+  .rv-next-name { font: italic 400 22px/1 var(--serif); }
+  .rv-next i { font-style: normal; color: var(--red); font-size: 22px; transition: translate .3s var(--ease); }
+  .rv-next:hover i { translate: 6px 0; }
+  @media (max-width: 700px) { .rv-next-label { display: none; } .rv-next { margin-left: 0; } }
+  /* author photo lives in the top-right corner; on the next letter it peeks past the edge, then slides into place */
+  .reviews .rv { --av: clamp(64px, 7vw, 96px); --pd: clamp(28px, 4vw, 60px); position: relative; }
+  .reviews .rv .rv-ava { position: absolute; top: var(--pd); right: var(--pd); width: var(--av); height: var(--av); margin: 0; border: 3px solid #1a1013; box-shadow: 0 0 0 1px var(--line), 0 12px 30px rgba(0,0,0,.5); z-index: 2;
+    translate: 0 0; transition: translate .8s var(--ease), width .8s var(--ease), height .8s var(--ease), box-shadow .8s, opacity .4s; }
+  .reviews .rv.on { --av: clamp(100px, 11vw, 150px); }
+  .reviews .rv.on .rv-ava { box-shadow: 0 0 0 1px var(--line), 0 14px 40px -6px rgba(212,44,64,.7), 0 0 70px rgba(212,44,64,.35); }
+  .reviews .rv[style*="--k: 1"] .rv-ava { translate: calc(var(--pd) + var(--av) / 2) 0; animation: rvPeek 3.2s ease-in-out infinite; }
+  .reviews .rv[style*="--k: 2"] .rv-ava, .reviews .rv[style*="--k: 3"] .rv-ava { opacity: 0; }
+  .reviews .rv[style*="--k: 1"]:hover { filter: brightness(1); }
+  @keyframes rvPeek { 0%, 70%, 100% { transform: none; } 80% { transform: translateX(5px) rotate(4deg); } 90% { transform: translateX(-2px); } }
+  @media (prefers-reduced-motion: reduce) { .reviews .rv .rv-ava { animation: none; } }
+  .reviews .rv-solo { grid-template-columns: 1fr; }
+  .reviews .rv-solo .rv-side { align-items: flex-start; text-align: left; padding-right: calc(var(--av) + 16px); min-height: var(--av); justify-content: center; }
+  .reviews .rv-solo .rv-body { border-left: 0; padding-left: 0; }
+  .reviews .rv:not(.rv-solo) .rv-lead { padding-right: calc(var(--av) - 10px); }
+  @media (max-width: 700px) {
+    .reviews .rv { --av: 48px; --pd: 18px; padding: 22px 18px; transform: translate(calc(var(--k) * 16px), calc(var(--k) * 8px)) rotate(calc(var(--k) * 1deg)); } .reviews .rv.on { --av: 76px; }
+    .reviews .rv-lead { font-size: 22px; line-height: 1.32; }
+    .reviews .rv-text { font-size: 15px; line-height: 1.65; }
+    .reviews .rv::after { font-size: 64px; }
+    .reviews .rv .rv-side { padding-right: calc(var(--av) + 8px); }
+    .reviews .rv:not(.rv-solo) .rv-lead { padding-right: 0; }
+  }
+  /* quote mark sits on the photo's lower-left edge as a decoration */
+  .reviews .rv-body::before { content: none; }
+  .reviews .rv::after { content: "\201C"; position: absolute; z-index: 3; top: calc(var(--pd) + var(--av) * .62); right: calc(var(--pd) + var(--av) * .78); font: 400 clamp(72px, 7vw, 110px)/1 var(--serif); color: var(--red); text-shadow: 0 4px 18px rgba(0,0,0,.6); pointer-events: none; opacity: 0; transition: opacity .4s, top .8s var(--ease), right .8s var(--ease); }
+  .reviews .rv.on::after { opacity: 1; transition-delay: .3s; }
   /* ===== LETTER / CONTACT ===== */
   .contact { min-height: 100svh; display: grid; place-items: center; overflow: hidden; }
   .contact .glow { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; background: radial-gradient(var(--wine), transparent 60%); opacity: .5; left: 50%; top: 50%; translate: -50% -50%; pointer-events: none; }
@@ -650,11 +728,105 @@
   </div>
 </section>
 
-<!-- VI. LETTER -->
+<!-- VI. REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="chapter">Chapter VI · Reviews</div>
+  <h2>Letters <em>in&nbsp;reply</em></h2>
+  <div class="rv-stack">
+  <div class="rv-list">
+    <article class="rv">
+      <div class="rv-side">
+        <img class="rv-cover" src="/img/groza.jpg" alt="Cover of “After the Storm, I Am the Sky”" loading="lazy">
+        <img class="rv-ava" src="/img/review-alena.jpg" alt="Alena Kot" loading="lazy">
+        <div><div class="rv-name">Alena Kot</div><div class="rv-role">author</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">The cover turned out gorgeous! I was so nervous at first, not knowing how it would all come out, but you are a true professional.</p>
+        <div class="rv-text">
+          <p>I had an idea, and the illustrator brought it to life beautifully. She listened to every one of my edits and polished the cover to perfection. People do judge a book by its cover — she knows it well and puts all her skill into it.</p>
+          <p>She's also wonderful to work with: she replies right away and lays out every detail in a clear, structured way. I'd love to collaborate on a new project in the future. If you've been looking for an illustrator, rejoice — you've found Linel Em!</p>
+        </div>
+        <span class="rv-book">“After the Storm, I Am the Sky”</span>
+      </div>
+    </article>
+    <article class="rv rv-solo">
+      <div class="rv-side">
+        <img class="rv-ava" src="/img/review-anastasia.jpg" alt="Anastasia Chertkova" loading="lazy">
+        <div><div class="rv-name">Anastasia Chertkova</div><div class="rv-role">author at Eksmo and MIF, book blogger</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">The characters came alive in her illustrations. An incredibly talented artist with a stunning sense of colour and an eye for detail!</p>
+        <div class="rv-text">
+          <p>I worked with Linel on my book “Ariadne’s Labyrinth” and was absolutely delighted. She carefully took all my wishes into account, yet also suggested her own ideas when, in her professional view, they suited better. That’s when real magic happened. Linel captured each character’s personality and turned words into magnificent art.</p>
+          <p>I adore every illustration Linel creates — I’m her fan.</p>
+        </div>
+        <span class="rv-book">“Ariadne’s Labyrinth”</span>
+      </div>
+    </article>
+    <article class="rv rv-solo">
+      <div class="rv-side">
+        <img class="rv-ava" src="/img/review-kristina.jpg" alt="Kristina" loading="lazy">
+        <div><div class="rv-name">Kristina</div><div class="rv-role">editor at Eksmo</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">Full commitment to the process, quick revisions, easy communication — your illustration is definitely in safe hands.</p>
+        <div class="rv-text">
+          <p>I want to thank Linel Em for a wonderful collaboration and, of course, for the incredibly beautiful illustrations!</p>
+        </div>
+      </div>
+    </article>
+    <article class="rv">
+      <div class="rv-side">
+        <img class="rv-cover" src="/img/prepod.jpg" alt="Cover of “The Professor”" loading="lazy">
+        <img class="rv-ava" src="/img/review-yulia.jpg" alt="Yulia Hokka" loading="lazy">
+        <div><div class="rv-name">Yulia Hokka</div><div class="rv-role">writer and psychologist, Eksmo author</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">I got one of the most beautiful character illustrations I have ever seen.</p>
+        <div class="rv-text">
+          <p>I’m thrilled with the cover for my book. I was very anxious about it at first, but in the end I consider myself lucky to have found Linel Em.</p>
+          <p>Stylish linework, beautiful faces, and a subtle sense of the characters and the tension between them. I really hope my future books will get covers from this wonderful artist too. Thank you!</p>
+        </div>
+        <span class="rv-book">“The Professor” · Eksmo</span>
+      </div>
+    </article>
+    <article class="rv rv-solo">
+      <div class="rv-side">
+        <img class="rv-ava" src="/img/review-anastasia-ed.jpg" alt="Anastasia" loading="lazy">
+        <div><div class="rv-name">Anastasia</div><div class="rv-role">literary editor at Eksmo and AST</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">We understood each other almost without words and were completely on the same wavelength.</p>
+        <div class="rv-text">
+          <p>I want to thank Linel Em for beautiful illustrations and a fantastic experience working with the artist! I ordered two covers with completely different moods and palettes.</p>
+          <p>Above all, I’d point out her dedication, her readiness to help develop the idea, how fully she immerses herself in the book’s atmosphere, and how easy she is to communicate with. We were constantly in touch and made revisions quickly.</p>
+          <p>First I came to her for an illustration in cold tones with a tense, oppressive atmosphere, then for one in red and orange, full of passion, light sensuality and intimacy. Linel Em handled both brilliantly. I’m absolutely delighted with her work!</p>
+        </div>
+      </div>
+    </article>
+    <article class="rv rv-solo">
+      <div class="rv-side">
+        <img class="rv-ava" src="/img/review-polina.jpg" alt="Polina Maleeva" loading="lazy">
+        <div><div class="rv-name">Polina Maleeva</div><div class="rv-role">managing editor, non-book products and licensing</div></div>
+      </div>
+      <div class="rv-body">
+        <p class="rv-lead">Our projects owe much of their popularity to her illustrations!</p>
+        <div class="rv-text">
+          <p>Linel Em not only lived up to my expectations as a professional and as the project’s artist, but also turned out to be a wonderful person!</p>
+          <p>She follows the brief precisely and always meets deadlines. Yet she doesn’t stop at doing exactly what the author asked: she brings her own ideas and interesting options. Working with her is a pure pleasure.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+  <button class="rv-next" type="button" data-cursor="Read"><span class="rv-next-label">Next letter</span><img alt=""><span class="rv-next-name"></span><i aria-hidden="true">→</i></button>
+  </div>
+</section>
+
+<!-- VII. LETTER -->
 <section class="contact" id="contact">
   <div class="glow"></div>
   <div class="letter">
-    <div class="chapter" style="color:var(--wine)">Chapter VI · A Letter</div>
+    <div class="chapter" style="color:var(--wine)">Chapter VII · A Letter</div>
     <h2>My dear author,</h2>
     <p>if you’re reading this letter, your book needs a cover no one can walk past.</p>
     <p>Tell me about the plot, the characters, your timeline and format. I’ll write back with my next open slot.</p>
@@ -1098,6 +1270,40 @@
   const lateRefresh = () => { clearTimeout(refreshT); refreshT = setTimeout(() => { ScrollTrigger.sort(); ScrollTrigger.refresh(); }, 250); };
   document.fonts && document.fonts.ready.then(lateRefresh);
   document.addEventListener('load', (e) => { if (e.target.tagName === 'IMG') lateRefresh(); }, true);
+})();
+
+/* reviews: a stack of letters, the top one slides away to reveal the next */
+(() => {
+  const list = document.querySelector('.reviews .rv-list');
+  if (!list) return;
+  const cards = [...list.children], btn = document.querySelector('.rv-next');
+  const n = cards.length; let cur = 0, busy = false;
+  cards.forEach((c) => { const a = c.querySelector('.rv-ava'); if (a) c.appendChild(a); });
+  const render = () => {
+    cards.forEach((c, i) => {
+      const k = (i - cur + n) % n;
+      c.style.setProperty('--k', Math.min(k, 3));
+      c.classList.toggle('on', k === 0);
+      c.classList.toggle('far', k > 2);
+      c.setAttribute('aria-hidden', k ? 'true' : 'false');
+    });
+    const nx = cards[(cur + 1) % n];
+    btn.querySelector('img').src = (nx.querySelector('.rv-ava') || nx.querySelector('.rv-cover')).src;
+    btn.querySelector('.rv-next-name').textContent = nx.querySelector('.rv-name').textContent;
+  };
+  const go = (d) => {
+    if (busy || n < 2) return; busy = true;
+    if (d > 0) {
+      const top = cards[cur]; top.classList.add('out');
+      setTimeout(() => { top.classList.remove('out'); cur = (cur + 1) % n; render(); busy = false; }, 500);
+    } else { cur = (cur - 1 + n) % n; render(); setTimeout(() => busy = false, 500); }
+  };
+  btn.addEventListener('click', () => go(1));
+  cards.forEach((c) => c.addEventListener('click', () => { if (!c.classList.contains('on')) go(1); }));
+  let x0 = null;
+  list.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  list.addEventListener('touchend', (e) => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  render();
 })();
 </script>
 </body>
